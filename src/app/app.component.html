@@ -1,3 +1,12 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<main class="h-screen flex flex-col">
+  <app-header></app-header>
+
+  <main class="flex flex-grow">
+    <aside class="top-0 left-0 z-40 w-52">
+      <app-sidebar></app-sidebar>
+    </aside>
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer></app-footer>
+</main>
