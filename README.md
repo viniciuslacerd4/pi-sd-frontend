@@ -1,17 +1,13 @@
 # PiSdFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
+Gerado com [Angular CLI](https://github.com/angular/angular-cli) ver 18.2.0.
 
-## Development server
+## Rodar local
 
-Install the node modules with `npm install`
-Run `ng serve` for a dev server.
-Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Caso ainda não tenha, instale o angular CLI com o comando `npm i @angular/cli`
+Clone o projeto em uma pasta
+Entre na pasta e execute:
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli).
+- `npm install` para instalar as dependências
+- `ng serve` para rodar o servidor angular.
+- Mantenha o terminal aberto e navegue até `http://localhost:4200/`
