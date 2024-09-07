@@ -1,0 +1,14 @@
+<div>
+  <h1>Tipos de investimento</h1>
+  <p>Encontre a melhor maneira de investir para alcançar seus objetivos.</p>
+</div>
+
+<div class="w-full flex justify-between space-x-2">
+  @for (investment of investmentTypes; track $index) {
+  <div class="w-full h-32 bg-slate-500">
+    <i class="{{ investment.icon }}"></i>
+    <h2>{{ investment.name }}</h2>
+    <p>{{ investment.description }}</p>
+  </div>
+  }
+</div>

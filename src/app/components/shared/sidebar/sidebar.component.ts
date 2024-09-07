@@ -16,17 +16,16 @@ interface SidebarItem {
 })
 export class SidebarComponent {
   sidebarItems: SidebarItem[] = [
-    { icon: 'fa-solid fa-house', label: 'Início', route: ['/home'] },
     {
       icon: 'fa-solid fa-money-bill-trend-up',
       label: 'Investimentos',
-      route: ['/profile'],
+      route: ['/investments'],
     },
-    { icon: 'fa-solid fa-wallet', label: 'Carteira', route: ['/profile'] },
+    { icon: 'fa-solid fa-wallet', label: 'Carteira', route: ['/wallet'] },
     {
       icon: 'fa-solid fa-money-bill-transfer',
       label: 'Transferências',
-      route: ['/profile'],
+      route: ['/transfers'],
     },
   ];
 }

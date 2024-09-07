@@ -1,6 +1,30 @@
-<h1>Header</h1>
-<a [routerLink]="['/']">Home</a> /
-<a [routerLink]="['/auth', 'login']">Login</a> /
-<a [routerLink]="['/auth', 'register']">Register</a> /
-<a [routerLink]="['/profile']">Profile</a> /
+<div class="h-20 pt-2 pb-1 px-6 flex justify-between align-bottom">
+  <a class="" [routerLink]="['/']">
+    <img class="max-h-full" src="/images/buzzard_logo.png" alt="Logo" />
+  </a>
+
+  <div>
+    <a [routerLink]="['/landing']">Landing</a> /
+    <a [routerLink]="['/auth', 'login']">Login</a> /
+    <a [routerLink]="['/auth', 'register']">Register</a> /
+  </div>
+
+  <div class="flex flex-col justify-end">
+    <a class="flex align-middle" [routerLink]="['/profile']">
+      <div class="h-5">
+        <img
+          class="rounded-full size-10"
+          src="/images/buzzard_placeholder.png"
+          alt="Foto de perfil"
+        />
+      </div>
+
+      <div class="flex flex-col justify-center">
+        <p>Olá <strong>Usuário</strong></p>
+        <p>Finalizar/Editar perfil</p>
+      </div>
+    </a>
+  </div>
+</div>
+
 <hr />

@@ -1,1 +1,12 @@
-<p>profile works!</p>
+<h1>Perfil</h1>
+<form [formGroup]="formgroup" (ngSubmit)="onFormSubmit()">
+  <div>
+    <label for="name">Nome</label>
+    <input type="text" id="name" formControlName="name" />
+  </div>
+  <div>
+    <label for="document">Documento</label>
+    <input type="text" id="document" formControlName="document" />
+  </div>
+  <button type="submit">Criar/Atualizar</button>
+</form>
