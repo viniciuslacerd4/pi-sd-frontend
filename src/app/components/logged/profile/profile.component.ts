@@ -5,8 +5,8 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CustomValidators } from '../../utils/custom-validators';
 import { RouterLink } from '@angular/router';
+import { CustomValidators } from '../../../utils/custom-validators';
 
 @Component({
   selector: 'app-profile',

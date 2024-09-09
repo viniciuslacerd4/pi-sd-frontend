@@ -4,7 +4,6 @@
 @tailwind utilities;
 
 :root {
-  --cor-0: #ffffff;
   --cor-1: #f7f7f7;
   --cor-2: #ededed;
   --cor-3: #dedede;
@@ -16,7 +15,6 @@
   --cor-9: #404040;
   --cor-10: #2e2e2e;
   --cor-11: #111111;
-  --cor-12: #000000;
   --cor-p1: #ff6200;
   --cor-p2: #fa7410;
 }
