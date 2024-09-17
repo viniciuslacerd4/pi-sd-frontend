@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/logged/header/header.component';
+import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/logged/header/header.component';
 import { SidebarComponent } from './components/logged/sidebar/sidebar.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +16,10 @@ export class AppComponent implements OnInit {
   hideHeader = false;
   hideSidebar = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((url) => {
-      console.log(url);
-    });
+    // TODO enable this after implementing guards
+    // this.authService.autoLogin();
   }
 }

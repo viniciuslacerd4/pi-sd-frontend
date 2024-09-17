@@ -6,7 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { CustomValidators } from '../../../utils/custom-validators';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,11 @@ import { RouterLink } from '@angular/router';
 export class RegisterComponent {
   formgroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.formgroup = this.formBuilder.group({
@@ -33,20 +38,30 @@ export class RegisterComponent {
           CustomValidators.keyedPattern(/(?=.*[a-z])/, 'lowercase'),
           CustomValidators.keyedPattern(/(?=.*[A-Z])/, 'uppercase'),
           CustomValidators.keyedPattern(/(?=.*[+-_!@#$%^&*.,?])/, 'special'),
-          CustomValidators.matchFields('confirmPassword', true),
+          //CustomValidators.matchFields('confirmPassword', true),
         ],
       ],
       confirmPassword: [
         '',
         Validators.required,
-        CustomValidators.matchFields('password'),
+        //CustomValidators.matchFields('password', false),
       ],
     });
   }
 
-  onRegisterSubmit() {
+  onFormSubmit() {
     if (this.formgroup.invalid) return;
 
-    console.log(this.formgroup.value);
+    this.authService
+      .register(this.formgroup.value.email, this.formgroup.value.password)
+      .subscribe({
+        next: (jwtUser) => {
+          console.log('User registered as ' + jwtUser.email);
+          this.router.navigate(['/auth/login']);
+        },
+        error: (error) => {
+          console.log('Error registering: ' + error);
+        },
+      });
   }
 }

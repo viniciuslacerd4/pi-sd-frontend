@@ -5,7 +5,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { JwtUser } from '../../../models/jwt-user.model';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,11 @@ import { RouterLink } from '@angular/router';
 export class LoginComponent implements OnInit {
   formgroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.formgroup = this.formBuilder.group({
@@ -26,9 +32,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onLoginSubmit() {
+  onFormSubmit() {
+    console.log('Form submitted');
+
     if (this.formgroup.invalid) return;
 
     console.log(this.formgroup.value);
+
+    this.authService
+      .login(this.formgroup.value.email, this.formgroup.value.password)
+      .subscribe({
+        next: (jwtUser: JwtUser) => {
+          console.log('User logged in as ' + jwtUser.email);
+          // this.router.navigate(['/']);
+        },
+        error: (error) => {
+          console.log('Error logging in: ' + error);
+        },
+      });
   }
 }
