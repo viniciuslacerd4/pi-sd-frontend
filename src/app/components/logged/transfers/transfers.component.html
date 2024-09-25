@@ -1,0 +1,38 @@
+<div class="bg-topLaranja">
+  <h1 class="text-1-xxl font-poppins text-cor-12 ml-[100px] mt-[50px]">Meu Histórico</h1>
+
+  <div class="grid justify-center w-[100%] gap-6 mt-[60px]">
+    @for (transfer of transfers; track $index) {
+      <div class="w-[1700px] h-[250px] bg-cor-0 rounded-xl">
+        <h2 class="font-kulim text-2-l p-3">Histórico de Transações</h2>
+        <div class="bg-cor-p2 h-[1px] w-[100%]"></div>
+        <div class="grid grid-cols-5 justify-items-center items-center mt-14">
+          <div class="grid gap-4">
+            <h3 class="font-poppins text-1-m text-cor-p1">Data e Hora</h3>
+            <p class="font-poppins text-1-m">{{transfer.timeStamp}}</p>
+          </div>
+          <div class="grid gap-4">
+            <h3 class="font-poppins text-1-m text-cor-p1">Valor</h3>
+            <p class="font-poppins text-1-m">{{transfer.amount | currency : 'BRL'}}</p>
+          </div>
+          <div class="grid gap-4">
+            <h3 class="font-poppins text-1-m text-cor-p1">Operação</h3>
+            <div class="flex">
+              <i class="fa-solid fa-circle-arrow-down"></i>
+              <a class="font-poppins text-1-m" href="./">Saque</a>
+            </div>
+          </div>
+          <div class="grid gap-4">
+            <h3 class="font-poppins text-1-m text-cor-p1">Tipo</h3>
+            <p class="font-poppins text-1-m">{{transfer.type}}</p>
+          </div>
+          <div class="grid gap-4">
+            <h3 class="font-poppins text-1-m text-cor-p1">Saldo após a operação</h3>
+            <p class="font-poppins text-1-m">{{transfer.balance| currency : 'BRL'}}</p>
+          </div>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

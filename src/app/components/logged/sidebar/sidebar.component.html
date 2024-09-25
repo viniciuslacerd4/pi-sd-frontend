@@ -3,10 +3,10 @@
     @for (item of sidebarItems; track $index) {
     <li>
       <a
-        class="flex items-center text-cor-0 font-kulim text-2-m font-bold border-solid border-transparent hover:border-[1px] hover:border-cor-p2 rounded-md"
+        class="flex items-center text-cor-0 font-kulim text-2-m font-bold border-solid border-transparent hover:border-[1px] hover:border-cor-p2 rounded-[5px] p-3 transition duration-300 ease-in-out"
         [routerLink]="item.route"
       >
-        <i class="{{ item.icon }} text-cor-p1 text-2-xl"></i>
+        <i class="{{ item.icon }} text-cor-p1 text-2-xl pr-2"></i>
         <span>{{ item.label }}</span>
       </a>
     </li>

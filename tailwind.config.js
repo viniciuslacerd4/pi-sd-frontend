@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "cor-0": "var(--cor-0)",
         "cor-1": "var(--cor-1)",
         "cor-2": "var(--cor-2)",
         "cor-3": "var(--cor-3)",
@@ -15,6 +16,7 @@ module.exports = {
         "cor-9": "var(--cor-9)",
         "cor-10": "var(--cor-10)",
         "cor-11": "var(--cor-11)",
+        "cor-12": "var(--cor-12)",
         "cor-p1": "var(--cor-p1)",
         "cor-p2": "var(--cor-p2)",
       },

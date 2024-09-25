@@ -9,6 +9,7 @@ import { InvestmentsHomeComponent } from './components/logged/investments/invest
 import { InvestmentsComponent } from './components/logged/investments/investments.component';
 import { ProfileComponent } from './components/logged/profile/profile.component';
 import { LoggedComponent } from './components/logged/logged.component';
+import { TransfersComponent } from './components/logged/transfers/transfers.component';
 
 export const routes: Routes = [
   {
@@ -19,12 +20,14 @@ export const routes: Routes = [
       { path: 'register', component: RegisterComponent },
     ],
   },
+  { path: 'landing', component: LandingComponent },
   {
     path: '',
     component: LoggedComponent,
     children: [
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent },
+      { path: 'transfers', component: TransfersComponent },
       {
         path: 'investments',
         component: InvestmentsComponent,
@@ -32,10 +35,8 @@ export const routes: Routes = [
           { path: '', component: InvestmentsHomeComponent, pathMatch: 'full' },
         ],
       },
-      { path: 'landing', component: LandingComponent },
     ],
   },
-
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' },
 ];
