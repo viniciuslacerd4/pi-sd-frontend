@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
   }
 
   onFormSubmit() {
-    console.log('Form submitted');
-
     if (this.formgroup.invalid) return;
 
     console.log(this.formgroup.value);
@@ -43,8 +41,7 @@ export class LoginComponent implements OnInit {
       .login(this.formgroup.value.email, this.formgroup.value.password)
       .subscribe({
         next: (jwtUser: JwtUser) => {
-          console.log('User logged in as ' + jwtUser.email);
-          // this.router.navigate(['/']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           console.log('Error logging in: ' + error);

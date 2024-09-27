@@ -56,8 +56,7 @@ export class RegisterComponent {
       .register(this.formgroup.value.email, this.formgroup.value.password)
       .subscribe({
         next: (jwtUser) => {
-          console.log('User registered as ' + jwtUser.email);
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/auth', 'login']);
         },
         error: (error) => {
           console.log('Error registering: ' + error);

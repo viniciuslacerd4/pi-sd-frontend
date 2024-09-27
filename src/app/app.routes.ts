@@ -10,6 +10,7 @@ import { InvestmentsComponent } from './components/logged/investments/investment
 import { ProfileComponent } from './components/logged/profile/profile.component';
 import { LoggedComponent } from './components/logged/logged.component';
 import { TransfersComponent } from './components/logged/transfers/transfers.component';
+import { authGuard } from './services/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -24,8 +25,13 @@ export const routes: Routes = [
   {
     path: '',
     component: LoggedComponent,
+    canActivateChild: [authGuard],
     children: [
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      {
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full',
+      },
       { path: 'profile', component: ProfileComponent },
       { path: 'transfers', component: TransfersComponent },
       {

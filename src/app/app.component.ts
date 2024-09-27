@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/logged/header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/logged/sidebar/sidebar.component';
 import { AuthService } from './services/auth.service';
 
@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // TODO enable this after implementing guards
-    // this.authService.autoLogin();
+    this.authService.autoLogin();
   }
 }

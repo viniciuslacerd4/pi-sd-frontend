@@ -54,7 +54,7 @@ export class AuthService extends HttpAppService {
   // this is called in app.component.ts only
   public autoLogin() {
     const jwtUser = JwtUser.fromLocalStorage();
-    if (!jwtUser && jwtUser?.jwtToken) {
+    if (jwtUser != null && jwtUser?.jwtToken) {
       this.$jwtUser.next(jwtUser);
       this.autoLogout(jwtUser.expirationTime);
     }
@@ -97,7 +97,7 @@ export class AuthService extends HttpAppService {
     this.tokenExpirationTimer = setTimeout(() => {
       // TODO can add a toast message here
       this.logout();
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth', 'login']);
     }, expirationTime);
   }
 }
