@@ -35,7 +35,7 @@ export class ProfileComponent {
 
   onFormSubmit() {
     if (this.formgroup.invalid) return;
-
+    console.log('Ainda não funciona');
     console.log(this.formgroup.value);
   }
 }

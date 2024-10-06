@@ -41,7 +41,7 @@ export class AuthService extends HttpAppService {
             +response.body['id'],
             response.body['email'],
             response.headers.get('Authorization'),
-            response.body['hasAccount']
+            response.body['accountId']
           );
 
           this.updateJwtUser(jwtUser);

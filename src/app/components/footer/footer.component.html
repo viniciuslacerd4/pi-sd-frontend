@@ -1,2 +1,9 @@
 <hr />
-<h1 class="text-cor-0">Footer</h1>
+<div>
+  <h1 class="text-cor-0 text-xl font-bold">Footer</h1>
+  <div class="text-cor-0 flex flex-col underline w-52 h-20 flex-wrap">
+    <a [routerLink]="['/landing']">Landing</a>
+    <a [routerLink]="['/auth', 'login']">Login</a>
+    <a [routerLink]="['/auth', 'register']">Register</a>
+  </div>
+</div>

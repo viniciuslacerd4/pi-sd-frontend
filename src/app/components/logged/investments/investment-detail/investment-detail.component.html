@@ -1,0 +1,19 @@
+@if(investment == null){
+<div class="flex flex-col justify-center align-middle text-cor-0">
+  <p>Carregando</p>
+</div>
+}@else {
+<div class="flex flex-col justify-center align-middle text-cor-0">
+  <p>PRODUTO===========</p>
+  <p>{{ investment.product.name }}</p>
+  <p>Retorno diário {{ investment.product.dailyYield }}</p>
+
+  <p>INVESTIMENTO===========</p>
+  <p>Investido R$ {{ investment.investedValue }}</p>
+  <p>Momento {{ investment.buyTime }}</p>
+  <p>
+    {{ investment.isSold ? "Valor de venda" : "Estimativa" }}
+    {{ investment.sellPrice }}
+  </p>
+</div>
+}

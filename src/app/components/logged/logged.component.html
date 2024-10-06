@@ -1,9 +1,14 @@
 <section class="flex pt-2 gap-2">
-  <aside class="top-0 left-0 w-52">
+  <!-- <aside class="top-0 left-0 w-52">
     <app-sidebar></app-sidebar>
-  </aside>
+  </aside> -->
 
   <div class="flex-1">
+    <div class="w-full flex justify-end bg-slate-800 space-x-2 py-2">
+      @if (accountResponse) {
+      <div>Saldo: {{ accountResponse.balance | currency : "BRL" }}</div>
+      }
+    </div>
     <router-outlet></router-outlet>
   </div>
 </section>

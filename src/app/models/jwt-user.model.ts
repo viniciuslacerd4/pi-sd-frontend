@@ -5,7 +5,7 @@ export class JwtUser {
     public id: number,
     public email: string,
     private jwt: string,
-    public hasAccount: boolean
+    public accountId: number
   ) {}
 
   public get jwtTimeStamp(): number {
@@ -25,7 +25,7 @@ export class JwtUser {
       id: number;
       email: string;
       jwt: string;
-      hasAccount: boolean;
+      accountId: number;
     } = JSON.parse(localStorage.getItem(AppConstants.USER_LOCALSTORAGE_KEY));
 
     if (!userData) {
@@ -36,7 +36,7 @@ export class JwtUser {
       userData.id,
       userData.email,
       userData.jwt,
-      userData.hasAccount
+      userData.accountId
     );
   }
 }

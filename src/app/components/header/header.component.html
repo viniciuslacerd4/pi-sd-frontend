@@ -3,14 +3,8 @@
     <img class="max-h-full" src="/images/buzzard_logo.png" alt="Logo" />
   </a>
 
-  <div class="text-cor-0">
-    <a [routerLink]="['/landing']">Landing</a> /
-    <a [routerLink]="['/auth', 'login']">Login</a> /
-    <a [routerLink]="['/auth', 'register']">Register</a> /
-  </div>
-
   <div class="flex flex-col justify-end">
-    <a class="flex align-middle" [routerLink]="['/profile']">
+    <div class="flex align-middle">
       <div class="h-5">
         <img
           class="rounded-full size-10"
@@ -18,12 +12,26 @@
           alt="Foto de perfil"
         />
       </div>
-
+      @if (user != null) {
       <div class="flex flex-col justify-center text-cor-0">
-        <p>Olá <strong>Usuário</strong></p>
-        <p>Finalizar/Editar perfil</p>
+        <p>
+          Olá <strong>{{ user.email }}</strong>
+        </p>
+        <a [routerLink]="['/profile']">
+          {{ !!user.accountId ? "Editar" : "Finalizar" }} perfil
+        </a>
       </div>
-    </a>
+      }@else {
+      <div class="flex flex-col justify-center align-middle text-cor-0">
+        <a [routerLink]="['/auth', 'login']">Entrar</a>
+        <p>ou</p>
+        <a [routerLink]="['/auth', 'register']">Criar conta</a>
+      </div>
+      }
+    </div>
+    @if (user != null) {
+    <button (click)="onLogout()" class="bg-slate-500 text-white">Logout</button>
+    }
   </div>
 </div>
 
