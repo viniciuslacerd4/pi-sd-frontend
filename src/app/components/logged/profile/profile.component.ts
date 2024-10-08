@@ -18,6 +18,16 @@ import { CustomValidators } from '../../../utils/custom-validators';
 export class ProfileComponent {
   formgroup: FormGroup;
 
+  get nameValid() {
+    const name = this.formgroup.get('name');
+    return name.invalid && (name.touched || name.dirty);
+  }
+
+  get documentValid() {
+    const document = this.formgroup.get('document');
+    return document.invalid && (document.touched || document.dirty);
+  }
+
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -27,7 +37,8 @@ export class ProfileComponent {
         '',
         [
           Validators.required,
-          CustomValidators.keyedPattern(/^[0-9]$/, 'number'),
+          Validators.minLength(9),
+          CustomValidators.keyedPattern(/^[0-9]*$/, 'number'),
         ],
       ],
     });

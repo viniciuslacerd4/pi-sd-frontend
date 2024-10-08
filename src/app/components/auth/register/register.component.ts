@@ -21,18 +21,18 @@ export class RegisterComponent {
 
   get emailValid() {
     const email = this.formgroup.get('email');
-    return email.hasError && (email.touched || email.dirty);
+    return email.invalid && (email.touched || email.dirty);
   }
 
   get passwordValid() {
     const password = this.formgroup.get('password');
-    return password.hasError && (password.touched || password.dirty);
+    return password.invalid && (password.touched || password.dirty);
   }
 
   get confirmPasswordValid() {
     const confirmPassword = this.formgroup.get('confirmPassword');
     return (
-      confirmPassword.hasError &&
+      confirmPassword.invalid &&
       (confirmPassword.touched || confirmPassword.dirty)
     );
   }
