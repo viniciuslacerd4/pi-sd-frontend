@@ -19,6 +19,24 @@ import { AuthService } from '../../../services/auth.service';
 export class RegisterComponent {
   formgroup: FormGroup;
 
+  get emailValid() {
+    const email = this.formgroup.get('email');
+    return email.hasError && (email.touched || email.dirty);
+  }
+
+  get passwordValid() {
+    const password = this.formgroup.get('password');
+    return password.hasError && (password.touched || password.dirty);
+  }
+
+  get confirmPasswordValid() {
+    const confirmPassword = this.formgroup.get('confirmPassword');
+    return (
+      confirmPassword.hasError &&
+      (confirmPassword.touched || confirmPassword.dirty)
+    );
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -38,13 +56,13 @@ export class RegisterComponent {
           CustomValidators.keyedPattern(/(?=.*[a-z])/, 'lowercase'),
           CustomValidators.keyedPattern(/(?=.*[A-Z])/, 'uppercase'),
           CustomValidators.keyedPattern(/(?=.*[+-_!@#$%^&*.,?])/, 'special'),
-          //CustomValidators.matchFields('confirmPassword', true),
+          CustomValidators.matchFields('confirmPassword', true),
         ],
       ],
       confirmPassword: [
         '',
         Validators.required,
-        //CustomValidators.matchFields('password', false),
+        CustomValidators.matchFields('password'),
       ],
     });
   }

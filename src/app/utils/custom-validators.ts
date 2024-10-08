@@ -1,4 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { of } from 'rxjs';
 
 export class CustomValidators {
   static keyedPattern(reg: RegExp, key: string): ValidatorFn {
@@ -8,22 +9,20 @@ export class CustomValidators {
     };
   }
 
-  static matchFields(matchTo: string, isCounterPart?: boolean): ValidatorFn {
+  static matchFields(matchTo: string, reverse?: boolean): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      if (control.parent && isCounterPart) {
-        const foundControl = (control.parent as any)[
-          matchTo
-        ] as AbstractControl;
-        if (foundControl) {
-          foundControl.updateValueAndValidity();
+      if (control.parent && reverse) {
+        const c = (control.parent?.controls as any)[matchTo] as AbstractControl;
+        if (c) {
+          c.updateValueAndValidity();
         }
         return null;
       }
       return !!control.parent &&
         !!control.parent.value &&
         control.value === (control.parent?.controls as any)[matchTo].value
-        ? null
-        : { matching: true };
+        ? of(null)
+        : of({ matching: true });
     };
   }
 }
