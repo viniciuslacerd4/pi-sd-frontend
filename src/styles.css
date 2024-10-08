@@ -32,10 +32,14 @@
   }
 
   .buzzard-btn {
-    @apply m-2 text-gray-200 bg-orange-500 hover:bg-orange-700 font-bold rounded-2xl px-6 py-3 text-center;
+    @apply m-2 text-gray-200 bg-primary hover:bg-orange-700 font-bold rounded-2xl px-6 py-3 text-center;
   }
 
   .buzzard-form-label{
     @apply text-gray-200;
+  }
+
+  .buzzard-form-input{
+    @apply bg-transparent text-orange-400 border-2 border-primary rounded-lg h-12 p-2;
   }
 }
