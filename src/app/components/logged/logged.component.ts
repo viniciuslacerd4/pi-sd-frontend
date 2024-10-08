@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { JwtUser } from '../../models/jwt-user.model';
@@ -11,7 +10,7 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-logged',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, RouterOutlet, CurrencyPipe],
+  imports: [HeaderComponent, RouterOutlet, CurrencyPipe],
   templateUrl: './logged.component.html',
   styleUrl: './logged.component.css',
 })

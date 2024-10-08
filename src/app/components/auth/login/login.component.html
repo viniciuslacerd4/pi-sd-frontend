@@ -1,41 +1,37 @@
-<div class="h-full grid justify-items-center py-16">
-  <img class="" src="/images/buzzard_logo.png" alt="logo" />
+<div class="flex justify-center items-center h-full">
   <form
-    class="border-solid border-cor-p1 border-[2px] rounded-[20px] p-3 w-[500px] grid justify-center"
+    class="flex flex-col items-center border-solid border-orange-500 border-2 rounded-2xl p-3 w-96 h-fit"
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
   >
-    <h1 class="place-self-center font-poppins text-cor-0 text-1-l">
-      Entrar na sua conta
-    </h1>
+    <h1 class="text-gray-200 text-2xl font-bold">Entrar na sua conta</h1>
 
-    <label class="text-cor-p1 text-kulim text-2-m" for="email"> Email </label>
-    <input
-      placeholder="Digite seu e-mail"
-      class="w-[450px] bg-black border-[1px] border-cor-p1 rounded-[7px] h-12 p-2"
-      type="email"
-      name="email"
-      formControlName="email"
-    />
+    <div class="w-full flex flex-col">
+      <label class="buzzard-form-label" for="email">Email</label>
+      <input
+        placeholder="Digite seu e-mail"
+        class="bg-transparent text-orange-400 border-2 border-orange-500 rounded-lg h-12 p-2"
+        type="email"
+        name="email"
+        formControlName="email"
+      />
+    </div>
 
-    <label class="text-cor-p1 text-kulim text-2-m" for="senha"> Senha </label>
-    <input
-      placeholder="Digite sua senha"
-      class="w-[100%] bg-black border-[1px] border-cor-p1 rounded-[7px] h-12 p-2"
-      type="password"
-      name="senha"
-      formControlName="password"
-    />
+    <div class="w-full flex flex-col">
+      <label class="buzzard-form-label" for="senha">Senha</label>
+      <input
+        placeholder="Digite sua senha"
+        class="bg-transparent text-orange-400 border-2 border-orange-500 rounded-lg h-12 p-2"
+        type="password"
+        name="senha"
+        formControlName="password"
+      />
+    </div>
 
-    <a class="text-cor-p1 hover:text-[#FFA366] font-kulim text-2-s" href="./">
-      Esqueci minha senha
-    </a>
+    <button type="submit" class="buzzard-btn">Acessar conta</button>
 
-    <button
-      type="submit"
-      class="place-self-center mt-3 w-[50%] text-cor-0 text-1-m bg-cor-p1 hover:bg-[#D35400] font-medium rounded-full px-6 py-3.5 text-center me-2 mb-2 dark:bg-cor-p1 dark:hover:bg-[#D35400]"
-    >
-      Acessar
-    </button>
+    <div class="h-0.5 bg-orange-500 w-full"></div>
+
+    <a [routerLink]="['/auth', 'register']" class="buzzard-link">Criar conta</a>
   </form>
 </div>

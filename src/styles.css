@@ -21,11 +21,21 @@
   --cor-p2: #FA7410;
 }
 
-.bg-principal {
-  background: radial-gradient(circle at top left, rgba(235, 101, 18, 0.45) 0%, rgba(0, 0, 0, 0) 25%), radial-gradient(circle at bottom right, rgba(235, 101, 18, 0.45) 0%, rgba(0, 0, 0, 0) 25%), #000000;
-}
-
 .bg-topLaranja {
   background-image: linear-gradient(to bottom, var(--cor-p1) 35%, var(--cor-12) 35%);
   height: 94.8vh;
+}
+
+@layer components {
+  .buzzard-link {
+    @apply text-orange-500 hover:text-orange-700 underline;
+  }
+
+  .buzzard-btn {
+    @apply m-2 text-gray-200 bg-orange-500 hover:bg-orange-700 font-bold rounded-2xl px-6 py-3 text-center;
+  }
+
+  .buzzard-form-label{
+    @apply text-gray-200;
+  }
 }

@@ -1,91 +1,52 @@
-<div class="h-full grid place-content-center py-16">
-  <div
-    class="border-2 border-solid border-cor-p1 rounded-3xl grid place-items-center p-5 w-[600px]"
+<div class="flex justify-center items-center h-full">
+  <form
+    [formGroup]="formgroup"
+    (ngSubmit)="onFormSubmit()"
+    class="flex flex-col items-center border-solid border-orange-500 border-2 rounded-2xl p-3 w-96 h-fit"
   >
-    <div class="h-36 mb-2">
-      <img class="max-h-full" src="/images/buzzard_logo.png" alt="Logo" />
+    <h1 class="text-gray-200 text-2xl font-bold">Bem-vindo ao Pix Buzzard</h1>
+
+    <div class="w-full flex flex-col">
+      <label class="buzzard-form-label" for="email">Email</label>
+      <input
+        placeholder="Digite seu e-mail"
+        class="bg-transparent text-orange-400 border-2 border-orange-500 rounded-lg h-12 p-2"
+        type="email"
+        name="email"
+        formControlName="email"
+      />
     </div>
 
-    <h1 class="text-white font-poppins text-1-xl font-bold pb-6">
-      Bem-vindo ao Pix Buzzard
-    </h1>
+    <div class="w-full flex flex-col">
+      <label class="buzzard-form-label" for="password"> Senha </label>
+      <input
+        class="bg-transparent text-orange-400 border-2 border-orange-500 rounded-lg h-12 p-2"
+        placeholder="Digite sua senha"
+        type="password"
+        name="password"
+        formControlName="password"
+      />
+    </div>
 
-    <form
-      [formGroup]="formgroup"
-      (ngSubmit)="onFormSubmit()"
-      class="grid place-items-center"
+    <div class="w-full flex flex-col">
+      <label class="buzzard-form-label" for="confirmPassword">
+        Repita a senha
+      </label>
+      <input
+        class="bg-transparent text-orange-400 border-2 border-orange-500 rounded-lg h-12 p-2"
+        placeholder="Repita sua senha"
+        type="password"
+        name="confirmPassword"
+        formControlName="confirmPassword"
+      />
+    </div>
+
+    <button type="submit" class="buzzard-btn">Criar conta</button>
+
+    <div class="h-0.5 bg-orange-500 w-full"></div>
+
+    <a [routerLink]="['/auth', 'login']" class="buzzard-link"
+      >Entrar em sua conta</a
     >
-      <div class="text-left w-full">
-        <label class="text-cor-p1 text-kulim text-2-m" for="email">
-          Email
-        </label>
-        <input
-          placeholder="caetano.gomes@gmail.com"
-          class="w-full bg-black border-2 border-cor-p1 rounded-lg h-12 p-2"
-          type="email"
-          name="email"
-          formControlName="email"
-        />
-      </div>
-
-      <div class="text-left w-full">
-        <label class="text-cor-p1 text-kulim text-2-m" for="password">
-          Senha
-        </label>
-        <input
-          class="w-full bg-black border-2 border-cor-p1 rounded-lg h-12 p-2"
-          type="password"
-          name="password"
-          formControlName="password"
-        />
-      </div>
-
-      <div class="text-left w-full">
-        <label class="text-cor-p1 text-kulim text-2-m" for="confirmPassword">
-          Repita a senha
-        </label>
-        <input
-          class="w-full bg-black border-2 border-cor-p1 rounded-lg h-12 p-2"
-          type="password"
-          name="confirmPassword"
-          formControlName="confirmPassword"
-        />
-      </div>
-
-      <div class="flex items-start mt-1">
-        <input class="mt-1 mr-1" type="checkbox" name="termos" id="termos" />
-        <label class="text-white text-1-xs font-poppins font-bold" for="termos">
-          Ao criar uma conta, eu concordo com os
-          <a class="text-cor-p1 hover:text-cor-p2" href="./">
-            Termos de Serviço
-          </a>
-          e com a
-          <a class="text-cor-p1 hover:text-cor-p2" href="./">
-            Política de Privacidade
-          </a>
-          da Pix Buzzard
-        </label>
-      </div>
-
-      <button
-        type="submit"
-        class="w-full mt-6 px-6 py-3.5 font-poppins text-1-l text-white bg-cor-p1 hover:hover:bg-[#D35400] rounded-lg text-center dark:bg-cor-p1 dark:hover:bg-[#D35400]"
-      >
-        Criar
-      </button>
-
-      <div class="flex items-center justify-center mt-3">
-        <div class="h-0.5 bg-[#FF6200] w-64"></div>
-        <p class="mx-4 text-white font-poppins text-1-m">ou</p>
-        <div class="h-0.5 bg-[#FF6200] w-64"></div>
-      </div>
-
-      <button
-        type="button"
-        class="mt-3 w-[50%] text-white text-1-m bg-cor-p1 hover:bg-[#D35400] font-medium rounded-full px-6 py-3.5 text-center me-2 mb-2 dark:bg-cor-p1 dark:hover:bg-[#D35400]"
-      >
-        Entrar em sua conta
-      </button>
-    </form>
-  </div>
+  </form>
 </div>
