@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit {
   onFormSubmit() {
     if (this.formgroup.invalid) return;
 
-    console.log(this.formgroup.value);
-
     this.authService
       .login(this.formgroup.value.email, this.formgroup.value.password)
       .subscribe({

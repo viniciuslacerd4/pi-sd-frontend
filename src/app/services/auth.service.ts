@@ -86,11 +86,11 @@ export class AuthService extends HttpAppService {
   }
 
   public updateJwtUser(jwtUser: JwtUser) {
-    this.$jwtUser.next(jwtUser);
     localStorage.setItem(
       AppConstants.USER_LOCALSTORAGE_KEY,
       JSON.stringify(jwtUser)
     );
+    this.$jwtUser.next(jwtUser);
   }
 
   private autoLogout(expirationTime: number) {

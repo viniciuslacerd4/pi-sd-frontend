@@ -7,7 +7,6 @@ import { HomeComponent } from './components/logged/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { InvestmentDetailComponent } from './components/logged/investments/investment-detail/investment-detail.component';
 import { InvestmentsBuzzardComponent } from './components/logged/investments/investments-buzzard/investments-buzzard.component';
-import { LoggedComponent } from './components/logged/logged.component';
 import { ProfileComponent } from './components/logged/profile/profile.component';
 import { TransfersComponent } from './components/logged/transfers/transfers.component';
 import { authGuard } from './services/guards/auth.guard';
@@ -24,7 +23,6 @@ export const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   {
     path: '',
-    component: LoggedComponent,
     canActivateChild: [authGuard],
     children: [
       {

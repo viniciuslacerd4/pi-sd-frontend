@@ -1,38 +1,49 @@
-<div class="h-20 pt-2 pb-1 px-6 flex justify-between align-bottom">
-  <a class="" [routerLink]="['/']">
+<div class="bg-primary h-24 flex justify-between align-bottom">
+  <a class="py-2 px-10" [routerLink]="['/']">
     <img class="max-h-full" src="/images/buzzard_logo.png" alt="Logo" />
   </a>
 
-  <div class="flex flex-col justify-end">
-    <div class="flex align-middle">
-      <div class="h-5">
-        <img
-          class="rounded-full size-10"
-          src="/images/buzzard_placeholder.png"
-          alt="Foto de perfil"
-        />
-      </div>
+  <div class="flex items-center gap-7 bg-primary-dark px-10">
+    @if (user ) { @if (accountResponse) {
+    <a
+      [routerLink]="['/investments']"
+      class="flex flex-col items-center justify-center text-gray-200"
+    >
+      <p class="text-l">Investido</p>
+      <p class="text-2xl font-bold">----------</p>
+    </a>
+
+    <a
+      [routerLink]="['/transfers']"
+      class="flex flex-col items-center justify-center pr-3 text-gray-200"
+    >
+      <p class="text-l">Saldo</p>
+      <p class="text-2xl font-bold">
+        {{ accountResponse.balance | currency : "BRL" }}
+      </p>
+    </a>
+    }@else {
+    <strong class="flex flex-col items-center justify-center text-gray-200">
+      <p class="text-l">Finalize sua conta para investir</p>
+    </strong>
+    } }
+
+    <div class="flex flex-col justify-end">
       @if (user != null) {
-      <div class="flex flex-col justify-center text-cor-0">
-        <p>
-          Olá <strong>{{ user.email }}</strong>
-        </p>
-        <a [routerLink]="['/profile']">
-          {{ !!user.accountId ? "Editar" : "Finalizar" }} perfil
-        </a>
-      </div>
+      <a [routerLink]="['/profile']" class="buzzard-btn py-1">
+        Editar <i class="fa-solid fa-pen-to-square text-l"></i>
+      </a>
+
+      <button (click)="onLogout()" class="buzzard-btn py-1">
+        Sair <i class="fa-solid fa-arrow-right-from-bracket text-l"></i>
+      </button>
       }@else {
-      <div class="flex flex-col justify-center align-middle text-cor-0">
-        <a [routerLink]="['/auth', 'login']">Entrar</a>
-        <p>ou</p>
-        <a [routerLink]="['/auth', 'register']">Criar conta</a>
-      </div>
+      <a [routerLink]="['/auth', 'login']" class="buzzard-btn py-1">Entrar</a>
+
+      <a [routerLink]="['/auth', 'register']" class="buzzard-btn py-1">
+        Criar conta
+      </a>
       }
     </div>
-    @if (user != null) {
-    <button (click)="onLogout()" class="bg-slate-500 text-white">Logout</button>
-    }
   </div>
 </div>
-
-<hr />

@@ -1,6 +1,6 @@
 <div class="flex justify-center items-center h-full">
   <form
-    class="flex flex-col items-center border-solid border-orange-500 border-2 rounded-2xl p-3 w-96 h-fit"
+    class="flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 w-96 h-fit"
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
   >
@@ -10,7 +10,7 @@
       <label class="buzzard-form-label" for="email">Email</label>
       <input
         placeholder="Digite seu e-mail"
-        class="bg-transparent text-orange-400 border-2 border-orange-500 rounded-lg h-12 p-2"
+        class="buzzard-form-input"
         type="email"
         name="email"
         formControlName="email"
@@ -21,7 +21,7 @@
       <label class="buzzard-form-label" for="senha">Senha</label>
       <input
         placeholder="Digite sua senha"
-        class="bg-transparent text-orange-400 border-2 border-orange-500 rounded-lg h-12 p-2"
+        class="buzzard-form-input"
         type="password"
         name="senha"
         formControlName="password"
@@ -30,7 +30,7 @@
 
     <button type="submit" class="buzzard-btn">Acessar conta</button>
 
-    <div class="h-0.5 bg-orange-500 w-full"></div>
+    <div class="h-0.5 bg-primary w-full"></div>
 
     <a [routerLink]="['/auth', 'register']" class="buzzard-link">Criar conta</a>
   </form>
