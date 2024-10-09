@@ -21,6 +21,7 @@ module.exports = {
         "cor-p2": "var(--cor-p2)",
         primary: "#ea580c",
         "primary-dark": "#9a3412",
+        "buzzard-white": "#f1eded",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

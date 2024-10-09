@@ -1,9 +1,56 @@
-<hr />
-<div>
-  <h1 class="text-cor-0 text-xl font-bold">Footer</h1>
-  <div class="text-cor-0 flex flex-col underline w-52 h-20 flex-wrap">
-    <a [routerLink]="['/landing']">Landing</a>
-    <a [routerLink]="['/auth', 'login']">Login</a>
-    <a [routerLink]="['/auth', 'register']">Register</a>
+<div class="bg-buzzard-white py-2 px-10">
+  <div class="flex justify-between">
+    <a class="h-32" [routerLink]="['/']">
+      <img class="max-h-full" src="/images/buzzard_logo.png" alt="Logo" />
+    </a>
+
+    <div class="flex gap-6">
+      <div class="flex flex-col text-nowrap">
+        <h5 class="text-xl">Informações</h5>
+        <a [routerLink]="['/landing']" class="buzzard-link">Buzzard Pix</a>
+        <a [routerLink]="['/landing']" class="buzzard-link">
+          Sobre investimentos
+        </a>
+      </div>
+
+      <div class="flex flex-col text-nowrap">
+        <h5 class="text-xl">Painel</h5>
+        <a [routerLink]="['/']" class="buzzard-link">Início</a>
+        <a [routerLink]="['/profile']" class="buzzard-link">Perfil</a>
+        <a [routerLink]="['/investments']" class="buzzard-link">
+          Investimentos
+        </a>
+        <a [routerLink]="['/transfers']" class="buzzard-link">
+          Transferências
+        </a>
+        <a [routerLink]="['/products']" class="buzzard-link">Produtos</a>
+      </div>
+
+      <div class="flex flex-col text-nowrap">
+        <h5 class="text-xl">Autenticação</h5>
+        <a [routerLink]="['/auth', 'login']" class="buzzard-link">Login</a>
+        <a [routerLink]="['/auth', 'register']" class="buzzard-link">
+          Criar conta
+        </a>
+      </div>
+
+      <div class="flex flex-col text-nowrap">
+        <h5 class="text-xl">Entre em contato</h5>
+
+        <div class="flex justify-between pt-2 px-2 text-3xl">
+          <a href="https://facebook.com" class="buzzard-link">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://linkedin.com" class="buzzard-link">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="#" class="buzzard-link">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <p class="text-sm">Buzzard Pix © Alguns direitos reservados - 2024</p>
 </div>
