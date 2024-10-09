@@ -100,4 +100,9 @@ export class AuthService extends HttpAppService {
       this.router.navigate(['/auth', 'login']);
     }, expirationTime);
   }
+
+  refresh() {
+    //TODO remove this if balance entity is added
+    this.updateJwtUser(this.$jwtUser.value);
+  }
 }

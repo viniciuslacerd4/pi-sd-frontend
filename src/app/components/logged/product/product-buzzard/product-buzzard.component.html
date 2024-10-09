@@ -1,1 +1,56 @@
-<p>product-buzzard works!</p>
+<div class="flex justify-between gap-3 text-gray-200">
+  <div class="w-1/2">
+    <h1 class="text-2xl font-bold">
+      {{ product.name }}
+    </h1>
+
+    <div class="h-0.5 bg-primary w-full mb-2"></div>
+
+    <div class="mb-2">
+      <h2 class="text-lg font-semibold">Descrição</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo odit
+        facilis enim ipsam eius eaque possimus accusamus, eum laboriosam quaerat
+        amet accusantium ex doloremque. In rem repudiandae quisquam aspernatur
+        nesciunt.
+      </p>
+    </div>
+
+    <div class="flex justify-between">
+      <div>
+        <h2 class="text-lg font-semibold">Resgate</h2>
+        <p class="text-primary">1 dia útil</p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold">Rendimento</h2>
+        <p>
+          Rende
+          <strong class="text-primary">{{ product.dailyYield * 100 }}%</strong>
+          por dia
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-1/2">
+    <form
+      class="flex flex-col border-solid border-primary border-2 rounded-2xl p-3"
+      [formGroup]="formgroup"
+      (ngSubmit)="onFormSubmit()"
+    >
+      <div class="w-full flex flex-col">
+        <label class="buzzard-form-label" for="amount">Valor a investir</label>
+        <input
+          placeholder="Digite seu e-mail"
+          class="buzzard-form-input"
+          type="number"
+          name="amount"
+          formControlName="amount"
+        />
+      </div>
+
+      <div><button type="submit" class="buzzard-btn">Investir</button></div>
+    </form>
+  </div>
+</div>

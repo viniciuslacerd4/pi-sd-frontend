@@ -18,4 +18,8 @@ export class ProductService extends HttpAppService {
   public findAll(): Observable<ProductResponse[]> {
     return this.httpClient.get<ProductResponse[]>(this.getEndpoint());
   }
+
+  public findById(id: number): Observable<ProductResponse> {
+    return this.httpClient.get<ProductResponse>(`${this.getEndpoint()}/${id}`);
+  }
 }
