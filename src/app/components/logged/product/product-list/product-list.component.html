@@ -1,0 +1,31 @@
+<div class="grid grid-cols-3 gap-3">
+  @for (product of products; track $index) {
+
+  <a
+    [routerLink]="['/products', product.id]"
+    class="p-3 bg-transparent border-2 text-gray-200 rounded-lg border-primary hover:border-primary-dark"
+  >
+    <div class="flex justify-between">
+      <div class="tracking-tight">
+        <h5 class="text-l">Tipo: BUZZARD PIX</h5>
+        <h5 class="text-2xl font-bold">
+          {{ product.name }}
+        </h5>
+      </div>
+      <p class="font-normal self-start text-nowrap">
+        Rende {{ product.dailyYield * 100 }}% por dia
+      </p>
+    </div>
+
+    <div class="my-3 h-0.5 bg-primary w-full"></div>
+
+    <div class="flex justify-between">
+      <div>
+        <p class="text-sm">Resgate em</p>
+        <p class="text-primary">1 dia útil</p>
+      </div>
+    </div>
+  </a>
+
+  }
+</div>

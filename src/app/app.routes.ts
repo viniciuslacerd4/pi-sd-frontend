@@ -10,6 +10,8 @@ import { InvestmentsBuzzardComponent } from './components/logged/investments/inv
 import { ProfileComponent } from './components/logged/profile/profile.component';
 import { TransfersComponent } from './components/logged/transfers/transfers.component';
 import { authGuard } from './services/guards/auth.guard';
+import { ProductListComponent } from './components/logged/product/product-list/product-list.component';
+import { ProductBuzzardComponent } from './components/logged/product/product-buzzard/product-buzzard.component';
 
 export const routes: Routes = [
   {
@@ -43,6 +45,20 @@ export const routes: Routes = [
           {
             path: ':id',
             component: InvestmentDetailComponent,
+          },
+        ],
+      },
+      {
+        path: 'products',
+        children: [
+          {
+            path: '',
+            component: ProductListComponent,
+            pathMatch: 'full',
+          },
+          {
+            path: ':id',
+            component: ProductBuzzardComponent,
           },
         ],
       },

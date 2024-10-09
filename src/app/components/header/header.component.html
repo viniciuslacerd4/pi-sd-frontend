@@ -30,17 +30,17 @@
 
     <div class="flex flex-col justify-end">
       @if (user != null) {
-      <a [routerLink]="['/profile']" class="buzzard-btn py-1">
-        Editar <i class="fa-solid fa-pen-to-square text-l"></i>
+      <a [routerLink]="['/profile']" class="buzzard-btn">
+        Editar <i class="fa-solid fa-pen-to-square pl-3"></i>
       </a>
 
-      <button (click)="onLogout()" class="buzzard-btn py-1">
-        Sair <i class="fa-solid fa-arrow-right-from-bracket text-l"></i>
+      <button (click)="onLogout()" class="buzzard-btn">
+        Sair <i class="fa-solid fa-arrow-right-from-bracket pl-3"></i>
       </button>
       }@else {
-      <a [routerLink]="['/auth', 'login']" class="buzzard-btn py-1">Entrar</a>
+      <a [routerLink]="['/auth', 'login']" class="buzzard-btn">Entrar</a>
 
-      <a [routerLink]="['/auth', 'register']" class="buzzard-btn py-1">
+      <a [routerLink]="['/auth', 'register']" class="buzzard-btn">
         Criar conta
       </a>
       }
