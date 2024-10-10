@@ -1,15 +1,43 @@
-<div class="flex flex-wrap gap-2">
+<div class="grid grid-cols-3 gap-3">
   @for (investment of investments; track $index) {
-  <a [routerLink]="[investment.id]" class="bg-slate-500 w-56 h-32">
-    <div>
-      <p>{{ investment.product.name }}</p>
-      <p>Investido R$ {{ investment.investedValue }}</p>
-      <p>Momento {{ investment.buyTime }}</p>
-      <p>
-        {{ investment.isSold ? "Valor de venda" : "Estimativa" }}
-        {{ investment.sellPrice }}
-      </p>
+
+  <a
+    [routerLink]="[investment.id]"
+    class="p-3 bg-transparent border-2 text-gray-200 rounded-lg border-primary hover:border-primary-dark"
+  >
+    <div class="flex justify-between">
+      <div class="tracking-tight">
+        <h5 class="text-sm">Tipo: BUZZARD PIX</h5>
+        <h5 class="text-lg font-bold">
+          {{ investment.product.name }}
+        </h5>
+      </div>
+      <div class="font-normal self-start text-nowrap">
+        <p>{{ investment.isSold ? "Vendido" : "Comprado" }}</p>
+        <p>{{ investment.buyTime | date : "mediumTime" }}</p>
+        <p>{{ investment.buyTime | date : "dd/MM/yy" }}</p>
+      </div>
+    </div>
+
+    <div class="my-3 h-0.5 bg-primary w-full"></div>
+
+    <div class="flex justify-between">
+      <div>
+        <p class="">Investido</p>
+        <p class="text-primary text-2xl">
+          R$ {{ investment.investedValue | number : "1.2-2" }}
+        </p>
+      </div>
+      <div>
+        <p class="">
+          {{ investment.isSold ? "Valor de venda" : "Estimativa de resgate" }}
+        </p>
+        <p class="text-primary font-bold text-2xl">
+          R$ {{ investment.sellPrice | number : "1.2-2" }}
+        </p>
+      </div>
     </div>
   </a>
+
   }
 </div>

@@ -3,11 +3,12 @@ import { InvestmentService } from '../../../../services/investment.service';
 import { Subscription } from 'rxjs';
 import { InvestmentResponse } from '../../../../models/investment-response.model';
 import { RouterLink } from '@angular/router';
+import { DatePipe, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-investments-buzzard',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe, DecimalPipe],
   templateUrl: './investments-buzzard.component.html',
   styleUrl: './investments-buzzard.component.css',
 })

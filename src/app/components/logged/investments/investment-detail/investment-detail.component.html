@@ -3,17 +3,88 @@
   <p>Carregando</p>
 </div>
 }@else {
-<div class="flex flex-col justify-center align-middle text-cor-0">
-  <p>PRODUTO===========</p>
-  <p>{{ investment.product.name }}</p>
-  <p>Retorno diário {{ investment.product.dailyYield }}</p>
+<div class="flex justify-between gap-3 text-gray-200">
+  <div class="w-1/2">
+    <h1 class="text-2xl font-bold">
+      {{ investment.product.name }}
+    </h1>
 
-  <p>INVESTIMENTO===========</p>
-  <p>Investido R$ {{ investment.investedValue }}</p>
-  <p>Momento {{ investment.buyTime }}</p>
-  <p>
-    {{ investment.isSold ? "Valor de venda" : "Estimativa" }}
-    {{ investment.sellPrice }}
-  </p>
+    <div class="h-0.5 bg-primary w-full mb-2"></div>
+
+    <div class="mb-2">
+      <p class="text-lg font-semibold">Descrição</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo odit
+        facilis enim ipsam eius eaque possimus accusamus, eum laboriosam quaerat
+        amet accusantium ex doloremque. In rem repudiandae quisquam aspernatur
+        nesciunt.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="w-1/2 flex flex-col border-solid border-primary border-2 rounded-2xl p-3 gap-3"
+  >
+    <div class="flex justify-between">
+      <div>
+        <p class="">Resgate</p>
+        <p class="text-2xl font-black text-primary">1 dia útil</p>
+      </div>
+
+      <div>
+        <p class="">Rendimento</p>
+        <p>
+          <strong class="text-2xl font-black text-primary">
+            {{ investment.product.dailyYield * 100 }}%
+          </strong>
+          / dia
+        </p>
+      </div>
+
+      <div>
+        <p class="">Compra</p>
+        <p class="text-2xl font-black text-primary">
+          {{ investment.buyTime | date : "dd/MM/yy - HH:mm" }}
+        </p>
+      </div>
+
+      <div>
+        <p class="">Venda</p>
+        <p class="text-2xl font-black text-primary">
+          @if(investment.isSold){
+          {{ investment.sellTime | date : "dd/MM/yy - HH:mm" }}
+          }@else{ ---------------- }
+        </p>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-end">
+      <div>
+        <p class="">Investido</p>
+        <p class="text-2xl font-black text-primary">
+          R$ {{ investment.investedValue | number : "1.2-2" }}
+        </p>
+      </div>
+
+      <div>
+        <p class="text-lg font-semibold">
+          {{ investment.isSold ? "Valor de venda" : "Estimativa de resgate" }}
+        </p>
+        <p class="text-4xl font-black text-primary">
+          R$ {{ investment.sellPrice | number : "1.2-2" }}
+        </p>
+      </div>
+
+      <div class="h-full flex flex-col justify-end">
+        @if(!investment.isSold){
+        <button type="button" class="buzzard-btn h-fit" (click)="sell()">
+          Resgatar
+        </button>
+        }@else{
+        <p class="text-4xl font-black text-primary">Vendido</p>
+        }
+      </div>
+    </div>
+  </div>
 </div>
 }
