@@ -1,10 +1,10 @@
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { InvestmentService } from '../../../../services/investment.service';
-import { InvestmentResponse } from '../../../../models/investment-response.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DatePipe, DecimalPipe } from '@angular/common';
-import { AuthService } from '../../../../services/auth.service';
+import { InvestmentResponse } from '../../../../models/investment-response.model';
+import { BalanceService } from '../../../../services/balance.service';
+import { InvestmentService } from '../../../../services/investment.service';
 
 @Component({
   selector: 'app-investment-detail',
@@ -22,7 +22,7 @@ export class InvestmentDetailComponent implements OnInit, OnDestroy {
   constructor(
     private investmentService: InvestmentService,
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService
+    private balanceService: BalanceService
   ) {}
 
   ngOnInit(): void {
@@ -42,10 +42,10 @@ export class InvestmentDetailComponent implements OnInit, OnDestroy {
 
   sell() {
     this.sellSubscription = this.investmentService
-      .sell(this.investment.id)
+      .sell({ investmentId: this.investment.id })
       .subscribe((investment) => {
         this.investment = investment;
-        this.authService.refresh();
+        this.balanceService.updateBalance();
       });
   }
 }

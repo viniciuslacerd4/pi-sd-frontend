@@ -54,7 +54,7 @@ export class ProfileComponent {
       ],
     });
 
-    this.authSubscription = this.authService.$jwtUser.subscribe({
+    this.authSubscription = this.authService.jwtUser$.subscribe({
       next: (jwtUser: JwtUser) => {
         this.fillForm(jwtUser);
       },
@@ -65,7 +65,7 @@ export class ProfileComponent {
     if (this.formgroup.invalid) return;
 
     this.accountService.create(this.formgroup.value).subscribe({
-      next: (AccountResponse: AccountResponse) => {
+      next: () => {
         this.router.navigate(['/']);
       },
       error: (error) => {

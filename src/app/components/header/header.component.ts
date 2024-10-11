@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { JwtUser } from '../../models/jwt-user.model';
-import { AccountResponse } from '../../models/account-response.model';
-import { AccountService } from '../../services/account.service';
 import { CurrencyPipe } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { JwtUser } from '../../models/jwt-user.model';
+import { AuthService } from '../../services/auth.service';
+import { BalanceService } from '../../services/balance.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,30 +13,34 @@ import { CurrencyPipe } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   user: JwtUser;
-  accountResponse: AccountResponse;
+  balance: number;
+
+  private userSubscription: Subscription;
+  private balanceSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private accountService: AccountService
+    private balanceService: BalanceService
   ) {}
 
   ngOnInit(): void {
-    this.authService.$jwtUser.subscribe((jwtUser) => {
+    this.userSubscription = this.authService.jwtUser$.subscribe((jwtUser) => {
       this.user = jwtUser;
-
-      if (jwtUser?.accountId != null) {
-        this.accountService
-          .findById(jwtUser.accountId)
-          .subscribe((accountResponse) => {
-            this.accountResponse = accountResponse;
-          });
-      } else {
-        this.accountResponse = null;
-      }
     });
+
+    this.balanceSubscription = this.balanceService.balance$.subscribe(
+      (balance) => {
+        this.balance = balance;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription?.unsubscribe();
+    this.balanceSubscription?.unsubscribe();
   }
 
   onLogout() {

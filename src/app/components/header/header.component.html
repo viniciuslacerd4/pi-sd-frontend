@@ -4,7 +4,7 @@
   </a>
 
   <div class="flex items-center gap-7 bg-primary-dark px-10">
-    @if (user ) { @if (accountResponse) {
+    @if (balance) {
     <a
       [routerLink]="['/investments']"
       class="flex flex-col items-center justify-center text-gray-200"
@@ -19,14 +19,14 @@
     >
       <p class="text-l">Saldo</p>
       <p class="text-2xl font-bold">
-        {{ accountResponse.balance | currency : "BRL" }}
+        {{ balance | currency : "BRL" }}
       </p>
     </a>
     }@else {
     <strong class="flex flex-col items-center justify-center text-gray-200">
       <p class="text-l">Finalize sua conta para investir</p>
     </strong>
-    } }
+    }
 
     <div class="flex flex-col justify-end">
       @if (user != null) {

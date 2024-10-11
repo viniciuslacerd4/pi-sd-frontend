@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ProductResponse } from '../../../../models/product-response.model';
-import { ProductService } from '../../../../services/product.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InvestmentRequest } from '../../../../models/investment-request.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { InvestmentBuyRequest } from '../../../../models/investment-buy-request.model';
+import { ProductResponse } from '../../../../models/product-response.model';
+import { BalanceService } from '../../../../services/balance.service';
 import { InvestmentService } from '../../../../services/investment.service';
-import { AuthService } from '../../../../services/auth.service';
+import { ProductService } from '../../../../services/product.service';
 
 @Component({
   selector: 'app-product-buzzard',
@@ -28,7 +28,7 @@ export class ProductBuzzardComponent {
   constructor(
     private productService: ProductService,
     private investmentService: InvestmentService,
-    private authService: AuthService,
+    private balanceService: BalanceService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router
@@ -55,14 +55,14 @@ export class ProductBuzzardComponent {
   onFormSubmit() {
     if (this.formgroup.invalid) return;
 
-    const investmentRequest: InvestmentRequest = {
+    const investmentRequest: InvestmentBuyRequest = {
       buyPrice: this.formgroup.value.amount,
       productId: this.product.id,
     };
 
-    this.investmentService.create(investmentRequest).subscribe({
+    this.investmentService.buy(investmentRequest).subscribe({
       next: () => {
-        this.authService.refresh();
+        this.balanceService.updateBalance();
         this.router.navigate(['/investments']);
       },
       error: (error) => {

@@ -1,13 +1,26 @@
-# PiSdFrontend
-
-Gerado com [Angular CLI](https://github.com/angular/angular-cli) ver 18.2.0.
+# Frontend - Buzzard Pix
 
 ## Rodar local
 
-Caso ainda não tenha, instale o angular CLI com o comando `npm i @angular/cli`
-Clone o projeto em uma pasta
-Entre na pasta e execute:
+### Requisitos
 
-- `npm install` para instalar as dependências
-- `ng serve` para rodar o servidor angular.
-- Mantenha o terminal aberto e navegue até `http://localhost:4200/`
+- Backend - Buzzard Pix
+- Node 20.17.0 (ou superior)
+- Angular CLI 18.2.0 (opcional)
+
+### Passos
+
+- Clone o repositório
+- Entre na pasta do projeto
+- Execute `npm install`
+- Execute um dos comandos:
+  - `ng serve` se o Angular CLI estiver instalado
+  - `npx ng serve` se o Angular CLI <b>não</b> estiver instalado
+
+## Docker
+
+Ainda não implementado
+
+## Backend
+
+O Repositório do backend está hospedado [aqui](https://github.com/Riko07br/pi-sd-backend)

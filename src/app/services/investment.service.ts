@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpAppService } from './http-app.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { InvestmentBuyRequest } from '../models/investment-buy-request.model';
 import { InvestmentResponse } from '../models/investment-response.model';
-import { InvestmentRequest } from '../models/investment-request.model';
+import { InvestmentSellRequest } from '../models/investment-sell-request.model';
+import { HttpAppService } from './http-app.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ import { InvestmentRequest } from '../models/investment-request.model';
 export class InvestmentService extends HttpAppService {
   protected override endpoint: string = '/investments';
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient) {
     super();
   }
 
@@ -26,18 +26,21 @@ export class InvestmentService extends HttpAppService {
     );
   }
 
-  public create(
-    investmentRequest: InvestmentRequest
+  public buy(
+    investmentBuyRequest: InvestmentBuyRequest
   ): Observable<InvestmentResponse> {
     return this.httpClient.post<InvestmentResponse>(
-      this.getEndpoint(),
-      investmentRequest
+      `${this.getEndpoint()}/buy`,
+      investmentBuyRequest
     );
   }
 
-  public sell(id: number): Observable<InvestmentResponse> {
-    return this.httpClient.get<InvestmentResponse>(
-      `${this.getEndpoint()}/${id}/sell`
+  public sell(
+    investmentSellRequest: InvestmentSellRequest
+  ): Observable<InvestmentResponse> {
+    return this.httpClient.post<InvestmentResponse>(
+      `${this.getEndpoint()}/sell`,
+      investmentSellRequest
     );
   }
 }

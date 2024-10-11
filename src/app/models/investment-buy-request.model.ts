@@ -1,4 +1,4 @@
-export interface InvestmentRequest {
+export interface InvestmentBuyRequest {
   buyPrice: number;
   productId: number;
 }

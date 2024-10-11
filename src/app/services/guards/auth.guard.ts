@@ -6,7 +6,7 @@ import { AuthService } from '../auth.service';
 
 export const authGuard: CanActivateChildFn = (route, state) => {
   const router = inject(Router);
-  return inject(AuthService).$jwtUser.pipe(
+  return inject(AuthService).jwtUser$.pipe(
     map((user: JwtUser) => {
       return user != null ? true : router.createUrlTree(['/auth', 'login']);
     })

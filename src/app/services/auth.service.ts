@@ -11,9 +11,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService extends HttpAppService {
-  public $jwtUser: BehaviorSubject<JwtUser> = new BehaviorSubject<JwtUser>(
-    null
-  );
+  jwtUser$: BehaviorSubject<JwtUser> = new BehaviorSubject<JwtUser>(null);
 
   protected override endpoint: string = '/auth';
 
@@ -55,13 +53,13 @@ export class AuthService extends HttpAppService {
   public autoLogin() {
     const jwtUser = JwtUser.fromLocalStorage();
     if (jwtUser != null && jwtUser?.jwtToken) {
-      this.$jwtUser.next(jwtUser);
+      this.jwtUser$.next(jwtUser);
       this.autoLogout(jwtUser.expirationTime);
     }
   }
 
   public logout() {
-    this.$jwtUser.next(null);
+    this.jwtUser$.next(null);
     localStorage.removeItem(AppConstants.USER_LOCALSTORAGE_KEY);
 
     //clear autologout timer
@@ -90,7 +88,7 @@ export class AuthService extends HttpAppService {
       AppConstants.USER_LOCALSTORAGE_KEY,
       JSON.stringify(jwtUser)
     );
-    this.$jwtUser.next(jwtUser);
+    this.jwtUser$.next(jwtUser);
   }
 
   private autoLogout(expirationTime: number) {
@@ -99,10 +97,5 @@ export class AuthService extends HttpAppService {
       this.logout();
       this.router.navigate(['/auth', 'login']);
     }, expirationTime);
-  }
-
-  refresh() {
-    //TODO remove this if balance entity is added
-    this.updateJwtUser(this.$jwtUser.value);
   }
 }
