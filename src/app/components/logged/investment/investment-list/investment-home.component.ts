@@ -10,10 +10,10 @@ interface InvestmentType {
   selector: 'app-investments-home',
   standalone: true,
   imports: [],
-  templateUrl: './investments-home.component.html',
-  styleUrl: './investments-home.component.css',
+  templateUrl: './investment-home.component.html',
+  styleUrl: './investment-home.component.css',
 })
-export class InvestmentsHomeComponent {
+export class InvestmentListComponent {
   investmentTypes: InvestmentType[] = [
     {
       name: 'Pix Buzzard',

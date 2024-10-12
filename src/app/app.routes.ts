@@ -5,13 +5,13 @@ import { NotFoundComponent } from './components/errors/not-found/not-found.compo
 import { HomeComponent } from './components/logged/home/home.component';
 
 import { LandingComponent } from './components/landing/landing.component';
-import { InvestmentDetailComponent } from './components/logged/investments/investment-detail/investment-detail.component';
-import { InvestmentsBuzzardComponent } from './components/logged/investments/investments-buzzard/investments-buzzard.component';
 import { ProfileComponent } from './components/logged/profile/profile.component';
 import { TransfersComponent } from './components/logged/transfers/transfers.component';
 import { authGuard } from './services/guards/auth.guard';
 import { ProductListComponent } from './components/logged/product/product-list/product-list.component';
 import { ProductBuzzardComponent } from './components/logged/product/product-buzzard/product-buzzard.component';
+import { InvestmentDetailComponent } from './components/logged/investment/investment-detail/investment-detail.component';
+import { InvestmentsBuzzardComponent } from './components/logged/investment/investments-buzzard/investments-buzzard.component';
 
 export const routes: Routes = [
   {
