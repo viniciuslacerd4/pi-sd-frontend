@@ -7,11 +7,11 @@ interface InvestmentType {
 }
 
 @Component({
-  selector: 'app-investments-home',
+  selector: 'app-investments-list',
   standalone: true,
   imports: [],
-  templateUrl: './investment-home.component.html',
-  styleUrl: './investment-home.component.css',
+  templateUrl: './investment-list.component.html',
+  styleUrl: './investment-list.component.css',
 })
 export class InvestmentListComponent {
   investmentTypes: InvestmentType[] = [

@@ -6,13 +6,13 @@ import { RouterLink } from '@angular/router';
 import { DatePipe, DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-investments-buzzard',
+  selector: 'app-investment-buzzard',
   standalone: true,
   imports: [RouterLink, DatePipe, DecimalPipe],
-  templateUrl: './investments-buzzard.component.html',
-  styleUrl: './investments-buzzard.component.css',
+  templateUrl: './investment-buzzard.component.html',
+  styleUrl: './investment-buzzard.component.css',
 })
-export class InvestmentsBuzzardComponent implements OnInit, OnDestroy {
+export class InvestmentBuzzardComponent implements OnInit, OnDestroy {
   investmentsSubscription: Subscription;
   investments: InvestmentResponse[];
 
