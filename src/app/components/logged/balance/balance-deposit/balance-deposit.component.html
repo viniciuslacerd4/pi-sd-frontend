@@ -1,0 +1,108 @@
+<div class="flex h-full gap-5 text-gray-200">
+  <div class="w-1/2">
+    <form
+      class="flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+      [formGroup]="balanceFormgroup"
+      (ngSubmit)="onBalanceFormSubmit()"
+    >
+      <h1 class="text-2xl font-bold">Escolha o valor a ser depositado</h1>
+      <div class="w-full flex flex-col">
+        <label class="buzzard-form-label" for="value">Valor</label>
+        <input
+          placeholder="Valor a ser transferido"
+          class="buzzard-form-input"
+          type="number"
+          name="value"
+          formControlName="value"
+        />
+      </div>
+
+      <button type="submit" class="buzzard-btn">
+        {{ balance ? "Alterar valor" : "Continuar" }}
+      </button>
+    </form>
+
+    @if(!!balance) {
+    <div
+      class="w-full flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+    >
+      <h1 class="text-2xl font-bold">Escolha a forma de depósito</h1>
+      <div class="w-full flex gap-5">
+        <button
+          type="button"
+          class="buzzard-btn w-1/2"
+          (click)="onDepositTypeChange('agency')"
+        >
+          Agência e Conta
+        </button>
+        <button
+          type="button"
+          class="buzzard-btn w-1/2"
+          (click)="onDepositTypeChange('pix')"
+        >
+          Pix
+        </button>
+        <button
+          type="button"
+          class="buzzard-btn w-1/2"
+          (click)="onDepositTypeChange('boleto')"
+        >
+          Boleto
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div
+    class="w-1/2 flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+  >
+    <h1 class="text-2xl font-bold">Resumo do depósito</h1>
+    @if(!!balance){
+    <div class="w-full flex flex-col">
+      <p>Valor</p>
+      <div class="h-0.5 bg-primary w-full"></div>
+      <p class="text-2xl font-bold">R$ {{ balance | number : "1.2-2" }}</p>
+    </div>
+    } @if(!!depositType){
+    <div class="w-full flex flex-col">
+      <p>Destino</p>
+      <div class="h-0.5 bg-primary w-full"></div>
+
+      @if(depositType == 'agency'){
+      <p class="">
+        Agência:
+        <span class="text-lg font-bold"> 1234-0 </span>
+      </p>
+      <p class="">
+        Conta:
+        <span class="text-lg font-bold"> 123456-0 </span>
+      </p>
+      <p class="">
+        Banco:
+        <span class="text-lg font-bold"> Ximira e Peixola Bank S.A. </span>
+      </p>
+      }@else if(depositType == 'pix'){
+      <p class="">
+        Chave Pix:
+        <span class="text-lg font-bold"> Usar QR Code </span>
+      </p>
+      }@else {
+      <p class="">
+        Boleto:
+        <span class="text-lg font-bold"> Usar código de barras </span>
+      </p>
+      }
+    </div>
+    }
+
+    <button
+      type="button"
+      class="buzzard-btn"
+      [disabled]="!depositType"
+      (click)="onSubmitOperation()"
+    >
+      Depositar
+    </button>
+  </div>
+</div>

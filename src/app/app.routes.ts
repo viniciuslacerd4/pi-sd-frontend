@@ -13,6 +13,7 @@ import { ProductBuzzardComponent } from './components/logged/product/product-buz
 import { InvestmentDetailComponent } from './components/logged/investment/investment-detail/investment-detail.component';
 import { InvestmentBuzzardComponent } from './components/logged/investment/investment-buzzard/investment-buzzard.component';
 import { BalanceTransferComponent } from './components/logged/balance/balance-transfer/balance-transfer.component';
+import { BalanceDepositComponent } from './components/logged/balance/balance-deposit/balance-deposit.component';
 
 export const routes: Routes = [
   {
@@ -69,6 +70,10 @@ export const routes: Routes = [
           {
             path: 'transfer',
             component: BalanceTransferComponent,
+          },
+          {
+            path: 'deposit',
+            component: BalanceDepositComponent,
           },
         ],
       },

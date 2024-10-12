@@ -7,11 +7,12 @@ import {
 } from '@angular/forms';
 import { BalanceService } from '../../../../services/balance.service';
 import { Router } from '@angular/router';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-balance-transfer',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DecimalPipe],
   templateUrl: './balance-transfer.component.html',
   styleUrl: './balance-transfer.component.css',
 })
@@ -22,6 +23,8 @@ export class BalanceTransferComponent implements OnInit {
 
   transferType: string;
   balance: number;
+
+  isTransferMethodSet: boolean = false;
 
   constructor(private balanceService: BalanceService, private router: Router) {}
 
@@ -49,21 +52,24 @@ export class BalanceTransferComponent implements OnInit {
 
   onAgencyFormSubmit() {
     if (!this.balanceFormgroup.valid || !this.agencyFormgroup.valid) return;
-
-    this.submitOperation();
+    this.isTransferMethodSet = true;
   }
 
   onPixFormSubmit() {
     if (!this.balanceFormgroup.valid || !this.pixFormgroup.valid) return;
-
-    this.submitOperation();
+    this.isTransferMethodSet = true;
   }
 
   onTransferTypeChange(type: string) {
+    this.isTransferMethodSet = false;
+    this.agencyFormgroup.reset();
+    this.pixFormgroup.reset();
     this.transferType = type;
   }
 
-  private submitOperation() {
+  submitOperation() {
+    if (!this.isTransferMethodSet) return;
+
     this.balanceService
       .operateBalance({ operation: 'withdraw', value: this.balance })
       .subscribe({
