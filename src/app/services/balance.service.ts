@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { BalanceResponse } from '../models/balance-response.model';
 import { AuthService } from './auth.service';
 import { HttpAppService } from './http-app.service';
+import { BalanceRequest } from '../models/balance-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,15 @@ export class BalanceService extends HttpAppService implements OnDestroy {
 
   public getBalance(): Observable<BalanceResponse> {
     return this.httpClient.get<BalanceResponse>(this.getEndpoint());
+  }
+
+  public operateBalance(
+    balanceRequest: BalanceRequest
+  ): Observable<BalanceResponse> {
+    return this.httpClient.post<BalanceResponse>(
+      this.getEndpoint(),
+      balanceRequest
+    );
   }
 
   public updateBalance(): void {

@@ -11,7 +11,8 @@ import { authGuard } from './services/guards/auth.guard';
 import { ProductListComponent } from './components/logged/product/product-list/product-list.component';
 import { ProductBuzzardComponent } from './components/logged/product/product-buzzard/product-buzzard.component';
 import { InvestmentDetailComponent } from './components/logged/investment/investment-detail/investment-detail.component';
-import { InvestmentsBuzzardComponent } from './components/logged/investment/investments-buzzard/investments-buzzard.component';
+import { InvestmentBuzzardComponent } from './components/logged/investment/investment-buzzard/investment-buzzard.component';
+import { BalanceTransferComponent } from './components/logged/balance/balance-transfer/balance-transfer.component';
 
 export const routes: Routes = [
   {
@@ -39,7 +40,7 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            component: InvestmentsBuzzardComponent,
+            component: InvestmentBuzzardComponent,
             pathMatch: 'full',
           },
           {
@@ -59,6 +60,15 @@ export const routes: Routes = [
           {
             path: ':id',
             component: ProductBuzzardComponent,
+          },
+        ],
+      },
+      {
+        path: 'balance',
+        children: [
+          {
+            path: 'transfer',
+            component: BalanceTransferComponent,
           },
         ],
       },

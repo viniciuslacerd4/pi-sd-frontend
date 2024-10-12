@@ -1,0 +1,130 @@
+<div class="flex h-full gap-5">
+  <form
+    class="w-1/2 flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+    [formGroup]="balanceFormgroup"
+    (ngSubmit)="onBalanceFormSubmit()"
+  >
+    <div class="w-full flex flex-col">
+      <label class="buzzard-form-label" for="value">Valor</label>
+      <input
+        placeholder="Valor a ser transferido"
+        class="buzzard-form-input"
+        type="number"
+        name="value"
+        formControlName="value"
+      />
+    </div>
+
+    <button type="submit" class="buzzard-btn">
+      {{ balance ? "Alterar valor" : "Continuar" }}
+    </button>
+  </form>
+
+  <div class="w-1/2">
+    @if (!transferType && !!balance) {
+    <h1 class="text-gray-200 text-2xl font-bold">
+      Escolha a forma de transferência
+    </h1>
+    <div class="flex gap-5">
+      <button
+        type="button"
+        class="buzzard-btn w-1/2"
+        (click)="onTransferTypeChange('agency')"
+      >
+        Agência e Conta
+      </button>
+      <button
+        type="button"
+        class="buzzard-btn w-1/2"
+        (click)="onTransferTypeChange('pix')"
+      >
+        Pix
+      </button>
+    </div>
+    } @else if (transferType == 'agency') {
+    <form
+      class="w-full flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+      [formGroup]="agencyFormgroup"
+      (ngSubmit)="onAgencyFormSubmit()"
+    >
+      <h1 class="text-gray-200 text-2xl font-bold">
+        Transfeirir com Agência e Conta
+      </h1>
+
+      <div class="w-full flex flex-col">
+        <label class="buzzard-form-label" for="agency">Agência</label>
+        <input
+          placeholder="Digite a sua agência"
+          class="buzzard-form-input"
+          type="text"
+          name="agency"
+          formControlName="agency"
+        />
+      </div>
+
+      <div class="w-full flex flex-col">
+        <label class="buzzard-form-label" for="account">Conta</label>
+        <input
+          placeholder="Digite sua conta sem dígito"
+          class="buzzard-form-input"
+          type="number"
+          name="account"
+          formControlName="account"
+        />
+      </div>
+
+      <div class="w-full flex flex-col">
+        <label class="buzzard-form-label" for="bank">Banco</label>
+        <input
+          placeholder="Digite o nome do banco"
+          class="buzzard-form-input"
+          type="text"
+          name="bank"
+          formControlName="bank"
+        />
+      </div>
+
+      <div class="flex justify-between">
+        <button
+          type="button"
+          class="buzzard-btn w-1/2"
+          (click)="onTransferTypeChange('pix')"
+        >
+          Mudar para Pix
+        </button>
+        <button type="submit" class="buzzard-btn">Continuar com conta</button>
+      </div>
+    </form>
+    }@else if (transferType == 'pix') {
+    <form
+      class="w-full flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+      [formGroup]="pixFormgroup"
+      (ngSubmit)="onPixFormSubmit()"
+    >
+      <h1 class="text-gray-200 text-2xl font-bold">Transfeirir com Pix</h1>
+
+      <div class="w-full flex flex-col">
+        <label class="buzzard-form-label" for="pix">Chave pix</label>
+        <input
+          placeholder="e-mail, cpf, telefone ou chave aleatória"
+          class="buzzard-form-input"
+          type="text"
+          name="pix"
+          formControlName="pix"
+        />
+      </div>
+
+      <div class="flex justify-between">
+        <button
+          type="button"
+          class="buzzard-btn w-1/2"
+          (click)="onTransferTypeChange('agency')"
+        >
+          Mudar para Agência e Conta
+        </button>
+        <button type="submit" class="buzzard-btn">Continuar com Pix</button>
+      </div>
+    </form>
+    }
+  </div>
+</div>
