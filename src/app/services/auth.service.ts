@@ -6,6 +6,7 @@ import { JwtUser } from '../models/jwt-user.model';
 import { AuthResponse } from '../models/auth-response.model';
 import { AppConstants } from '../utils/app-constants';
 import { Router } from '@angular/router';
+import { BalanceService } from './balance.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,11 @@ export class AuthService extends HttpAppService {
 
   private tokenExpirationTimer: any;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(
+    private httpClient: HttpClient,
+    private balanceService: BalanceService,
+    private router: Router
+  ) {
     super();
   }
 
@@ -51,15 +56,15 @@ export class AuthService extends HttpAppService {
 
   // this is called in app.component.ts only
   public autoLogin() {
-    const jwtUser = this.loadUserFromLocalStorage();
+    const jwtUser = JwtUser.fromLocalStorage();
     if (jwtUser != null && jwtUser?.jwtToken) {
       this.jwtUser$.next(jwtUser);
+      this.balanceService.updateBalance();
       this.autoLogout(jwtUser.expirationTime);
     }
   }
 
   public logout() {
-    this.jwtUser$.next(null);
     localStorage.removeItem(AppConstants.USER_LOCALSTORAGE_KEY);
 
     //clear autologout timer
@@ -67,6 +72,8 @@ export class AuthService extends HttpAppService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+    this.jwtUser$.next(null);
+    this.balanceService.updateBalance();
   }
 
   public register(
@@ -89,6 +96,7 @@ export class AuthService extends HttpAppService {
       JSON.stringify(jwtUser)
     );
     this.jwtUser$.next(jwtUser);
+    this.balanceService.updateBalance();
   }
 
   private autoLogout(expirationTime: number) {
@@ -97,25 +105,5 @@ export class AuthService extends HttpAppService {
       this.logout();
       this.router.navigate(['/auth', 'login']);
     }, expirationTime);
-  }
-
-  private loadUserFromLocalStorage() {
-    const userData: {
-      id: number;
-      email: string;
-      jwt: string;
-      accountId: number;
-    } = JSON.parse(localStorage.getItem(AppConstants.USER_LOCALSTORAGE_KEY));
-
-    if (!userData) {
-      return null;
-    }
-
-    return new JwtUser(
-      userData.id,
-      userData.email,
-      userData.jwt,
-      userData.accountId
-    );
   }
 }

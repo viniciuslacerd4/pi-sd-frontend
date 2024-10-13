@@ -27,15 +27,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.userSubscription = this.authService.jwtUser$.subscribe((jwtUser) => {
-      this.user = jwtUser;
-    });
-
     this.balanceSubscription = this.balanceService.balance$.subscribe(
       (balance) => {
+        console.log('Balance updated: ' + balance);
+
         this.balance = balance;
       }
     );
+
+    this.userSubscription = this.authService.jwtUser$.subscribe((jwtUser) => {
+      this.user = jwtUser;
+    });
   }
 
   ngOnDestroy(): void {

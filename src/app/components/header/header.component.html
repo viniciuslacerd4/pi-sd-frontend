@@ -4,7 +4,7 @@
   </a>
 
   <div class="flex items-center gap-7 bg-primary-dark px-10">
-    @if (balance) {
+    @if (balance !== null) {
     <a
       [routerLink]="['/investments']"
       class="flex flex-col items-center justify-center text-gray-200"

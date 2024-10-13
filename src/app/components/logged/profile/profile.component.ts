@@ -12,6 +12,8 @@ import { AccountResponse } from '../../../models/account-response.model';
 import { AuthService } from '../../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { JwtUser } from '../../../models/jwt-user.model';
+import { AccountRequest } from '../../../models/account-request.model';
+import { BalanceService } from '../../../services/balance.service';
 
 @Component({
   selector: 'app-profile',
@@ -38,7 +40,8 @@ export class ProfileComponent {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private balanceService: BalanceService
   ) {}
 
   ngOnInit() {
@@ -64,8 +67,14 @@ export class ProfileComponent {
   onFormSubmit() {
     if (this.formgroup.invalid) return;
 
-    this.accountService.create(this.formgroup.value).subscribe({
+    const accountRequest: AccountRequest = {
+      name: this.formgroup.get('name').value,
+      document: this.formgroup.get('document').value,
+    };
+
+    this.accountService.create(accountRequest).subscribe({
       next: () => {
+        this.balanceService.updateBalance();
         this.router.navigate(['/']);
       },
       error: (error) => {
