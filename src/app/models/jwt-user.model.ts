@@ -1,5 +1,3 @@
-import { AppConstants } from '../utils/app-constants';
-
 export class JwtUser {
   constructor(
     public id: number,
@@ -18,25 +16,5 @@ export class JwtUser {
 
   public get jwtToken(): string {
     return this.expirationTime > 0 ? this.jwt : null;
-  }
-
-  public static fromLocalStorage(): JwtUser {
-    const userData: {
-      id: number;
-      email: string;
-      jwt: string;
-      accountId: number;
-    } = JSON.parse(localStorage.getItem(AppConstants.USER_LOCALSTORAGE_KEY));
-
-    if (!userData) {
-      return null;
-    }
-
-    return new JwtUser(
-      userData.id,
-      userData.email,
-      userData.jwt,
-      userData.accountId
-    );
   }
 }

@@ -1,10 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  Subscription,
+  throwError,
+} from 'rxjs';
+import { BalanceRequest } from '../models/balance-request.model';
 import { BalanceResponse } from '../models/balance-response.model';
 import { AuthService } from './auth.service';
 import { HttpAppService } from './http-app.service';
-import { BalanceRequest } from '../models/balance-request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,9 +51,18 @@ export class BalanceService extends HttpAppService implements OnDestroy {
   }
 
   public updateBalance(): void {
-    this.getBalance().subscribe({
-      next: (balance) => this.balance$.next(balance.value),
-      error: () => this.balance$.next(null),
-    });
+    console.log('updateBalance');
+
+    this.httpClient
+      .get<BalanceResponse>(this.getEndpoint())
+      .pipe(
+        catchError((error: any) => {
+          return throwError(() => 'Something went wrong');
+        })
+      )
+      .subscribe({
+        next: (balance) => this.balance$.next(balance.value),
+        error: (error) => this.balance$.next(null),
+      });
   }
 }

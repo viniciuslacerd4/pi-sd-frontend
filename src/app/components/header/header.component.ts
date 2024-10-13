@@ -1,10 +1,10 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { JwtUser } from '../../models/jwt-user.model';
 import { AuthService } from '../../services/auth.service';
 import { BalanceService } from '../../services/balance.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',

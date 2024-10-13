@@ -51,7 +51,7 @@ export class AuthService extends HttpAppService {
 
   // this is called in app.component.ts only
   public autoLogin() {
-    const jwtUser = JwtUser.fromLocalStorage();
+    const jwtUser = this.loadUserFromLocalStorage();
     if (jwtUser != null && jwtUser?.jwtToken) {
       this.jwtUser$.next(jwtUser);
       this.autoLogout(jwtUser.expirationTime);
@@ -97,5 +97,25 @@ export class AuthService extends HttpAppService {
       this.logout();
       this.router.navigate(['/auth', 'login']);
     }, expirationTime);
+  }
+
+  private loadUserFromLocalStorage() {
+    const userData: {
+      id: number;
+      email: string;
+      jwt: string;
+      accountId: number;
+    } = JSON.parse(localStorage.getItem(AppConstants.USER_LOCALSTORAGE_KEY));
+
+    if (!userData) {
+      return null;
+    }
+
+    return new JwtUser(
+      userData.id,
+      userData.email,
+      userData.jwt,
+      userData.accountId
+    );
   }
 }
