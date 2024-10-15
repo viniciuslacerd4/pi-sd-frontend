@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BalanceRequest } from '../models/balance-request.model';
 import { BalanceResponse } from '../models/balance-response.model';
 import { HttpAppService } from './http-app.service';
 
@@ -21,16 +20,11 @@ export class BalanceService extends HttpAppService {
     return this.httpClient.get<BalanceResponse>(this.getEndpoint());
   }
 
-  public operateBalance(
-    balanceRequest: BalanceRequest
-  ): Observable<BalanceResponse> {
-    return this.httpClient.post<BalanceResponse>(
-      this.getEndpoint(),
-      balanceRequest
-    );
-  }
-
-  public updateBalance(): void {
+  public updateBalance(newBalance?: number): void {
+    if (newBalance) {
+      this.balance$.next(newBalance);
+      return;
+    }
     this.httpClient.get<BalanceResponse>(this.getEndpoint()).subscribe({
       next: (balance) => this.balance$.next(balance.value),
       error: (error) => this.balance$.next(null),

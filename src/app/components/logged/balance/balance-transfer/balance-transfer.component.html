@@ -183,7 +183,12 @@
     </div>
     }
 
-    <button type="button" class="buzzard-btn" [disabled]="!isTransferMethodSet">
+    <button
+      type="button"
+      class="buzzard-btn"
+      [disabled]="!isTransferMethodSet"
+      (click)="submitOperation()"
+    >
       Transfeirir
     </button>
   </div>

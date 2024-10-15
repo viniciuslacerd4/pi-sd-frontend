@@ -8,6 +8,7 @@ import {
 import { BalanceService } from '../../../../services/balance.service';
 import { Router } from '@angular/router';
 import { DecimalPipe } from '@angular/common';
+import { TransactionService } from '../../../../services/transaction.service';
 
 @Component({
   selector: 'app-balance-deposit',
@@ -22,7 +23,11 @@ export class BalanceDepositComponent implements OnInit {
   balance: number;
   depositType: string;
 
-  constructor(private balanceService: BalanceService, private router: Router) {}
+  constructor(
+    private balanceService: BalanceService,
+    private transactionService: TransactionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.balanceFormgroup = new FormGroup({
@@ -42,10 +47,15 @@ export class BalanceDepositComponent implements OnInit {
   onSubmitOperation() {
     if (!this.depositType) return;
 
-    this.balanceService
-      .operateBalance({ operation: 'deposit', value: this.balance })
+    this.transactionService
+      .create({
+        type: 'DEPOSIT',
+        value: this.balance,
+        description: 'Depósito via ' + this.depositType,
+      })
       .subscribe({
-        next: () => {
+        next: (transactionResponse) => {
+          //this.balanceService.updateBalance(transactionResponse.value);
           this.balanceService.updateBalance();
           this.router.navigate(['transfers']);
         },

@@ -29,8 +29,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.balanceSubscription = this.balanceService.balance$.subscribe(
       (balance) => {
-        console.log('Balance updated: ' + balance);
-
         this.balance = balance;
       }
     );
