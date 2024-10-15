@@ -1,8 +1,12 @@
+import { baseUrl } from '../utils/base-url';
+
 export abstract class HttpAppService {
-  private baseUrl = 'http://localhost:8080';
   protected abstract endpoint: string;
 
   protected getEndpoint(): string {
-    return `${this.baseUrl}${this.endpoint}`;
+    const fixedEndpoint = this.endpoint.startsWith('/')
+      ? this.endpoint.substring(1)
+      : this.endpoint;
+    return `${baseUrl}${fixedEndpoint}`;
   }
 }
