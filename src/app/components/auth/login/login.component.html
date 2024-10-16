@@ -1,6 +1,6 @@
 <div class="flex justify-center items-center h-full">
   <form
-    class="flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 w-96 h-fit"
+    class="flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
   >
@@ -30,7 +30,7 @@
 
     <button type="submit" class="buzzard-btn">Acessar conta</button>
 
-    <div class="h-0.5 bg-primary w-full"></div>
+    <div class="h-0.5 bg-bzd-orange w-full"></div>
 
     <a [routerLink]="['/auth', 'register']" class="buzzard-link">Criar conta</a>
   </form>

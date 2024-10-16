@@ -1,7 +1,7 @@
 <div class="flex h-full gap-5 text-gray-200">
   <div class="w-1/2">
     <form
-      class="flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+      class="flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 h-fit"
       [formGroup]="balanceFormgroup"
       (ngSubmit)="onBalanceFormSubmit()"
     >
@@ -24,7 +24,7 @@
 
     @if(!!balance) {
     <div
-      class="w-full flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+      class="w-full flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 h-fit"
     >
       <h1 class="text-2xl font-bold">Escolha a forma de depósito</h1>
       <div class="w-full flex gap-5">
@@ -55,19 +55,19 @@
   </div>
 
   <div
-    class="w-1/2 flex flex-col items-center border-solid border-primary border-2 rounded-2xl p-3 h-fit"
+    class="w-1/2 flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 h-fit"
   >
     <h1 class="text-2xl font-bold">Resumo do depósito</h1>
     @if(!!balance){
     <div class="w-full flex flex-col">
       <p>Valor</p>
-      <div class="h-0.5 bg-primary w-full"></div>
+      <div class="h-0.5 bg-bzd-orange w-full"></div>
       <p class="text-2xl font-bold">R$ {{ balance | number : "1.2-2" }}</p>
     </div>
     } @if(!!depositType){
     <div class="w-full flex flex-col">
       <p>Destino</p>
-      <div class="h-0.5 bg-primary w-full"></div>
+      <div class="h-0.5 bg-bzd-orange w-full"></div>
 
       @if(depositType == 'agency'){
       <p class="">

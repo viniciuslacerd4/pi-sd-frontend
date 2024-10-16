@@ -9,7 +9,7 @@
       {{ investment.product.name }}
     </h1>
 
-    <div class="h-0.5 bg-primary w-full mb-2"></div>
+    <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
 
     <div class="mb-2">
       <p class="text-lg font-semibold">Descrição</p>
@@ -23,18 +23,18 @@
   </div>
 
   <div
-    class="w-1/2 flex flex-col border-solid border-primary border-2 rounded-2xl p-3 gap-3"
+    class="w-1/2 flex flex-col border-solid border-bzd-orange border-2 rounded-2xl p-3 gap-3"
   >
     <div class="flex justify-between">
       <div>
         <p class="">Resgate</p>
-        <p class="text-2xl font-black text-primary">1 dia útil</p>
+        <p class="text-2xl font-black text-bzd-orange">1 dia útil</p>
       </div>
 
       <div>
         <p class="">Rendimento</p>
         <p>
-          <strong class="text-2xl font-black text-primary">
+          <strong class="text-2xl font-black text-bzd-orange">
             {{ investment.product.dailyYield * 100 }}%
           </strong>
           / dia
@@ -43,14 +43,14 @@
 
       <div>
         <p class="">Compra</p>
-        <p class="text-2xl font-black text-primary">
+        <p class="text-2xl font-black text-bzd-orange">
           {{ investment.buyTime | date : "dd/MM/yy - HH:mm" }}
         </p>
       </div>
 
       <div>
         <p class="">Venda</p>
-        <p class="text-2xl font-black text-primary">
+        <p class="text-2xl font-black text-bzd-orange">
           @if(investment.isSold){
           {{ investment.sellTime | date : "dd/MM/yy - HH:mm" }}
           }@else{ ---------------- }
@@ -61,7 +61,7 @@
     <div class="flex justify-between items-end">
       <div>
         <p class="">Investido</p>
-        <p class="text-2xl font-black text-primary">
+        <p class="text-2xl font-black text-bzd-orange">
           R$ {{ investment.buyPrice | number : "1.2-2" }}
         </p>
       </div>
@@ -70,7 +70,7 @@
         <p class="text-lg font-semibold">
           {{ investment.isSold ? "Valor de venda" : "Estimativa de resgate" }}
         </p>
-        <p class="text-4xl font-black text-primary">
+        <p class="text-4xl font-black text-bzd-orange">
           R$ {{ investment.sellPrice | number : "1.2-2" }}
         </p>
       </div>
@@ -81,7 +81,7 @@
           Resgatar
         </button>
         }@else{
-        <p class="text-4xl font-black text-primary">Vendido</p>
+        <p class="text-4xl font-black text-bzd-orange">Vendido</p>
         }
       </div>
     </div>
