@@ -1,57 +1,23 @@
-import { CurrencyPipe } from '@angular/common';
-import { Component } from '@angular/core';
-
-interface TransferItem{
-  timeStamp: string;
-  amount: number;
-  operation: string;
-  type: string;
-  balance: number;
-}
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { TransactionResponse } from '../../../models/transaction-response.model';
+import { TransactionService } from '../../../services/transaction.service';
 
 @Component({
   selector: 'app-transfers',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [DecimalPipe, DatePipe],
   templateUrl: './transfers.component.html',
   styleUrl: './transfers.component.css',
 })
-export class TransfersComponent {
-  transfers: TransferItem[] = [
-    {
-      timeStamp: '2021-10-10T10:10:10',
-      amount: 100,
-      operation: 'Depósito',
-      type: 'Crédito',
-      balance: 100,
-    },
-    {
-      timeStamp: '2021-10-10T10:10:10',
-      amount: 100,
-      operation: 'Depósito',
-      type: 'Crédito',
-      balance: 200,
-    },
-    {
-      timeStamp: '2021-10-10T10:10:10',
-      amount: 100,
-      operation: 'Saque',
-      type: 'Débito',
-      balance: 200,
-    },
-    {
-      timeStamp: '2021-10-10T10:10:10',
-      amount: 100,
-      operation: 'Saque',
-      type: 'Débito',
-      balance: 100,
-    },
-    {
-      timeStamp: '2021-10-10T10:10:10',
-      amount: 400,
-      operation: 'Depósito',
-      type: 'Crédito',
-      balance: 500,
-    },
-  ];
+export class TransfersComponent implements OnInit {
+  transactions: TransactionResponse[] = [];
+
+  constructor(private transactionService: TransactionService) {}
+
+  ngOnInit() {
+    this.transactionService.findAll().subscribe((transactions) => {
+      this.transactions = transactions;
+    });
+  }
 }

@@ -35,7 +35,6 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
       { path: 'profile', component: ProfileComponent },
-      { path: 'transfers', component: TransfersComponent },
       {
         path: 'investments',
         children: [
@@ -75,6 +74,7 @@ export const routes: Routes = [
             path: 'deposit',
             component: BalanceDepositComponent,
           },
+          { path: 'transfers', component: TransfersComponent },
         ],
       },
     ],

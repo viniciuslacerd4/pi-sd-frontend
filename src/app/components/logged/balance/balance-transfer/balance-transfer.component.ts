@@ -84,7 +84,7 @@ export class BalanceTransferComponent implements OnInit {
         next: (transactionResponse) => {
           //this.balanceService.updateBalance(transactionResponse.value);
           this.balanceService.updateBalance();
-          this.router.navigate(['transfers']);
+          this.router.navigate(['/balance', 'transfers']);
         },
         error: (error) => {
           console.log('Error ' + error);
