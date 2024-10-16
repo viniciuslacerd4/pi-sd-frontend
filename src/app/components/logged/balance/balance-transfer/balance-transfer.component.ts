@@ -51,7 +51,6 @@ export class BalanceTransferComponent implements OnInit {
 
   onBalanceFormSubmit() {
     if (!this.balanceFormgroup.valid) return;
-    console.log('set balance ok');
     this.balance = this.balanceFormgroup.get('value').value;
   }
 

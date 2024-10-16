@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import {
-  FormGroup,
   FormBuilder,
-  Validators,
+  FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { CustomValidators } from '../../../utils/custom-validators';
-import { AccountService } from '../../../services/account.service';
-import { AccountResponse } from '../../../models/account-response.model';
-import { AuthService } from '../../../services/auth.service';
 import { Subscription } from 'rxjs';
-import { JwtUser } from '../../../models/jwt-user.model';
 import { AccountRequest } from '../../../models/account-request.model';
-import { BalanceService } from '../../../services/balance.service';
+import { AccountResponse } from '../../../models/account-response.model';
+import { JwtUser } from '../../../models/jwt-user.model';
+import { AccountService } from '../../../services/account.service';
+import { AuthService } from '../../../services/auth.service';
+import { CustomValidators } from '../../../utils/custom-validators';
 
 @Component({
   selector: 'app-profile',
@@ -40,8 +39,7 @@ export class ProfileComponent {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private router: Router,
-    private authService: AuthService,
-    private balanceService: BalanceService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -73,8 +71,11 @@ export class ProfileComponent {
     };
 
     this.accountService.create(accountRequest).subscribe({
-      next: () => {
-        this.balanceService.updateBalance();
+      next: (accountResponse: AccountResponse) => {
+        const jwtUser = this.authService.jwtUser$.value;
+        jwtUser.accountId = accountResponse.id;
+        this.authService.updateJwtUser(jwtUser);
+
         this.router.navigate(['/']);
       },
       error: (error) => {
