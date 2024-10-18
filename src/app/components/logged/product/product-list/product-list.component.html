@@ -1,31 +1,33 @@
-<div class="grid grid-cols-3 gap-3">
-  @for (product of products; track $index) {
+<div class="min-h-screen bg-white p-5">
+  <div class="grid grid-cols-2 gap-3">
+    @for (product of products; track $index) {
 
-  <a
-    [routerLink]="['/products', product.id]"
-    class="p-3 bg-transparent border-2 text-gray-200 rounded-lg border-bzd-orange hover:border-bzd-orange-dark"
-  >
-    <div class="flex justify-between">
-      <div class="tracking-tight">
-        <h5 class="text-l">Tipo: BUZZARD PIX</h5>
-        <h5 class="text-2xl font-bold">
-          {{ product.name }}
-        </h5>
+    <a
+      [routerLink]="['/products', product.id]"
+      class="p-3 bg-transparent border-2 text-gray-900 rounded-lg border-bzd-orange hover:border-bzd-orange-dark"
+    >
+      <div class="flex justify-between">
+        <div class="tracking-tight">
+          <h5 class="text-l">Tipo: Buzzard Pix</h5>
+          <h5 class="text-2xl font-bold">
+            {{ product.name }}
+          </h5>
+        </div>
+        <p class="font-normal self-start text-nowrap">
+          Rende {{ product.dailyYield }}% por dia
+        </p>
       </div>
-      <p class="font-normal self-start text-nowrap">
-        Rende {{ product.dailyYield * 100 }}% por dia
-      </p>
-    </div>
 
-    <div class="my-3 h-0.5 bg-bzd-orange w-full"></div>
+      <div class="my-3 h-0.5 bg-bzd-orange w-full"></div>
 
-    <div class="flex justify-between">
-      <div>
-        <p class="text-sm">Resgate em</p>
-        <p class="text-bzd-orange">1 dia útil</p>
+      <div class="flex justify-between">
+        <div>
+          <p class="text-sm">Resgate em</p>
+          <p class="text-bzd-orange">1 dia útil</p>
+        </div>
       </div>
-    </div>
-  </a>
+    </a>
 
-  }
+    }
+  </div>
 </div>
