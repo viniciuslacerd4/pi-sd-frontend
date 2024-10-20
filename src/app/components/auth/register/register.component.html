@@ -1,68 +1,103 @@
-<div class="flex justify-center items-center h-full">
-  <form
-    [formGroup]="formgroup"
-    (ngSubmit)="onFormSubmit()"
-    class="flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
-  >
-    <h1 class="text-gray-200 text-2xl font-bold">Bem-vindo ao Pix Buzzard</h1>
+<div class="flex h-full">
+  <div class="w-1/2 h-full">
+    <img
+      src="/images/bzd-login.png"
+      alt="Buzzard login"
+      class="h-full w-full object-cover"
+    />
+  </div>
 
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="email">Email</label>
-      <input
-        placeholder="Digite seu e-mail"
-        class="buzzard-form-input"
-        type="email"
-        name="email"
-        formControlName="email"
-      />
-      @if (emailValid) {
-      <p class="text-red-500">Email inválido</p>
-      }
-    </div>
-
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="password"> Senha </label>
-      <input
-        class="buzzard-form-input"
-        placeholder="Digite sua senha"
-        type="password"
-        name="password"
-        formControlName="password"
-      />
-      @if (passwordValid) {
-      <div class="text-red-500">
-        A senha deve conter:
-        <p>Entre 6 a 20 caracteres</p>
-        <p>1 Letra maiúscula</p>
-        <p>1 Letra minúscula</p>
-        <p>1 Número</p>
-        <p>1 Caractere especial {{ "+-_!@#$%^&*.,?" }}</p>
+  <div class="w-1/2 h-full flex justify-center items-center">
+    <div
+      class="border border-bzd-orange rounded-lg p-8 w-1/2 shadow-md bg-white"
+    >
+      <div class="flex justify-center mb-4">
+        <img
+          src="/images/buzzard_logo.png"
+          alt="Buzzard Logo"
+          class="h-32"
+        />
       </div>
-      }
+      <h1 class="text-2xl font-bold text-center mb-4">
+        Bem-vindo ao Buzzard PIX
+      </h1>
+
+      <form
+        [formGroup]="formgroup"
+        (ngSubmit)="onFormSubmit()"
+        class="space-y-4"
+      >
+        <div>
+          <label for="email" class="block text-bzd-orange font-semibold mb-1">
+            E-mail
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="caetano.gornes@gmail.com"
+            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
+          />
+          <p *ngIf="emailValid" class="text-red-500">Email inválido</p>
+        </div>
+
+        <div>
+          <label for="password" class="block text-bzd-orange font-semibold mb-1">
+            Senha
+          </label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Digite sua senha"
+            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
+          />
+          <div *ngIf="passwordValid" class="text-red-500">
+            <p>A senha deve conter:</p>
+            <ul>
+              <li>Entre 6 a 20 caracteres</li>
+              <li>1 Letra maiúscula</li>
+              <li>1 Letra minúscula</li>
+              <li>1 Número</li>
+              <li>1 Caractere especial (+-_!#$%^&*.,?)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <label
+            for="confirmPassword"
+            class="block text-bzd-orange font-semibold mb-1"
+          >
+            Repita a senha
+          </label>
+          <input
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Repita sua senha"
+            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
+          />
+          <p *ngIf="confirmPasswordValid" class="text-red-500">
+            As senhas devem ser iguais
+          </p>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-bzd-orange hover:bg-bzd-orange-dark text-white font-bold py-2 rounded-lg"
+        >
+          Criar
+        </button>
+
+        <button
+          type="button"
+          [routerLink]="['/auth', 'register']"
+          class="w-full border border-bzd-orange hover:border-bzd-orange-dark text-bzd-orange hover:text-bzd-orange-dark font-bold py-2 rounded-lg"
+        >
+          Já tenho conta
+        </button>
+      </form>
     </div>
-
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="confirmPassword">
-        Repita a senha
-      </label>
-      <input
-        class="buzzard-form-input"
-        placeholder="Repita sua senha"
-        type="password"
-        name="confirmPassword"
-        formControlName="confirmPassword"
-      />
-      @if (confirmPasswordValid) {
-      <p class="text-red-500">Os emails devem ser iguais</p>
-      }
-    </div>
-
-    <button type="submit" class="buzzard-btn">Criar conta</button>
-
-    <div class="h-0.5 bg-bzd-orange w-full"></div>
-
-    <a [routerLink]="['/auth', 'login']" class="buzzard-link">
-      Entrar em sua conta
-    </a>
-  </form>
+  </div>
 </div>
