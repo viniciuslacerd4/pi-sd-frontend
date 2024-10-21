@@ -4,6 +4,7 @@ import { ProductResponse } from '../../../../models/product-response.model';
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { PercentPipe } from '@angular/common';
+import { Pageable } from '../../../../models/pageable.model';
 
 @Component({
   selector: 'app-product-list',
@@ -13,14 +14,14 @@ import { PercentPipe } from '@angular/common';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-  products: ProductResponse[] = [];
+  productPageable: Pageable<ProductResponse> = new Pageable<ProductResponse>();
   subscription: Subscription;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.subscription = this.productService.findAll().subscribe((products) => {
-      this.products = products;
+    this.subscription = this.productService.findAll().subscribe((pageable) => {
+      this.productPageable = pageable;
     });
   }
 

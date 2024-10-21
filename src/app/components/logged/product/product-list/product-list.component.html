@@ -1,5 +1,5 @@
 <div class="grid grid-cols-3 gap-3">
-  @for (product of products; track $index) {
+  @for (product of productPageable.content; track $index) {
 
   <a
     [routerLink]="['/products', product.id]"

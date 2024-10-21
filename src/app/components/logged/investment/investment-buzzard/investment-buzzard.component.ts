@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { InvestmentResponse } from '../../../../models/investment-response.model';
 import { RouterLink } from '@angular/router';
 import { DatePipe, DecimalPipe } from '@angular/common';
+import { Pageable } from '../../../../models/pageable.model';
 
 @Component({
   selector: 'app-investment-buzzard',
@@ -14,15 +15,16 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 })
 export class InvestmentBuzzardComponent implements OnInit, OnDestroy {
   investmentsSubscription: Subscription;
-  investments: InvestmentResponse[];
+  investmentPageable: Pageable<InvestmentResponse> =
+    new Pageable<InvestmentResponse>();
 
   constructor(private investmentService: InvestmentService) {}
 
   ngOnInit(): void {
     this.investmentsSubscription = this.investmentService
       .findAll()
-      .subscribe((investments) => {
-        this.investments = investments;
+      .subscribe((pageable) => {
+        this.investmentPageable = pageable;
       });
   }
 

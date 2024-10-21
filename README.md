@@ -24,4 +24,4 @@ Ainda não implementado
 ## Backend
 
 O Repositório do backend está hospedado [aqui](https://github.com/Riko07br/pi-sd-backend)</br>
-Compatibilidate com a versão do backend <b>0.3.3-SNAPSHOT</b>
+Compatibilidate com a versão do backend <b>0.4.0-SNAPSHOT</b>
