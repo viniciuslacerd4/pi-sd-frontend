@@ -19,4 +19,5 @@
   .buzzard-form-input{
     @apply bg-transparent text-bzd-orange-light border-2 border-bzd-orange rounded-lg h-12 p-2;
   }
+
 }
