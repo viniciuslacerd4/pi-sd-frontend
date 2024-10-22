@@ -12,11 +12,7 @@
       class="border border-bzd-orange rounded-lg p-8 w-1/2 shadow-md bg-white"
     >
       <div class="flex justify-center mb-4">
-        <img
-          src="/images/buzzard_logo.png"
-          alt="Buzzard Logo"
-          class="h-32"
-        />
+        <img src="/images/buzzard_logo.png" alt="Buzzard Logo" class="h-32" />
       </div>
       <h1 class="text-2xl font-bold text-center mb-4">
         Bem-vindo ao Buzzard PIX
@@ -39,13 +35,15 @@
             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
           />
           @if(emailValid){
-            <p class="text-red-500">Email inválido</p>
+          <p class="text-red-500">Email inválido</p>
           }
-          
         </div>
 
         <div>
-          <label for="password" class="block text-bzd-orange font-semibold mb-1">
+          <label
+            for="password"
+            class="block text-bzd-orange font-semibold mb-1"
+          >
             Senha
           </label>
           <input
@@ -56,18 +54,17 @@
             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
           />
           @if(passwordValid){
-            <div class="text-red-500">
-              <p>A senha deve conter:</p>
-              <ul>
-                <li>Entre 6 a 20 caracteres</li>
-                <li>1 Letra maiúscula</li>
-                <li>1 Letra minúscula</li>
-                <li>1 Número</li>
-                <li>1 Caractere especial (+-_!#$%^&*.,?)</li>
-              </ul>
-            </div>
+          <div class="text-red-500">
+            <p>A senha deve conter:</p>
+            <ul>
+              <li>Entre 6 a 20 caracteres</li>
+              <li>1 Letra maiúscula</li>
+              <li>1 Letra minúscula</li>
+              <li>1 Número</li>
+              <li>1 Caractere especial (+-_!#$%^&*.,?)</li>
+            </ul>
+          </div>
           }
-          
         </div>
 
         <div>
@@ -84,9 +81,9 @@
             placeholder="Repita sua senha"
             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
           />
-          <p *ngIf="confirmPasswordValid" class="text-red-500">
-            As senhas devem ser iguais
-          </p>
+          @if(passwordValid){
+          <p class="text-red-500">As senhas devem ser iguais</p>
+          }
         </div>
 
         <button
