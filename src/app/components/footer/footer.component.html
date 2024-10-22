@@ -112,21 +112,21 @@
       <h1 class="text-2xl pb-4">Entre em contato</h1>
       <ul class="flex gap-4">
         <li>
-          <a href="https://www.facebook.com/" target="_blank">
+          <a [routerLink]="['https://www.facebook.com/']" target="_blank">
             <i
               class="fa-brands fa-facebook fa-2x transition-transform duration-300 ease-in-out transform hover:scale-125"
             ></i>
           </a>
         </li>
         <li>
-          <a href="https://github.com/" target="_blank">
+          <a [routerLink]="['https://github.com/']" target="_blank">
             <i
               class="fa-brands fa-github fa-2x transition-transform duration-300 ease-in-out transform hover:scale-125"
             ></i>
           </a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/" target="_blank">
+          <a [routerLink]="['https://www.linkedin.com/']" target="_blank">
             <i
               class="fa-brands fa-linkedin fa-2x transition-transform duration-300 ease-in-out transform hover:scale-125"
             ></i>
@@ -139,7 +139,7 @@
       <h1 class="text-2xl">Fale com o suporte</h1>
       <a
         class="text-lg font-bold hover:text-gray-600 hover:underline"
-        href="./"
+        [routerLink]="['./']"
       >
         (61) 3213 – 1313
       </a>
