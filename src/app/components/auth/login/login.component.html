@@ -1,42 +1,3 @@
-<!-- <div class="flex justify-center items-center h-full">
-  <form
-    class="flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
-    [formGroup]="formgroup"
-    (ngSubmit)="onFormSubmit()"
-  >
-    <h1 class="text-gray-200 text-2xl font-bold">Entrar na sua conta</h1>
-
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="email">Email</label>
-      <input
-        placeholder="Digite seu e-mail"
-        class="buzzard-form-input"
-        type="email"
-        name="email"
-        formControlName="email"
-      />
-    </div>
-
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="senha">Senha</label>
-      <input
-        placeholder="Digite sua senha"
-        class="buzzard-form-input"
-        type="password"
-        name="senha"
-        formControlName="password"
-      />
-    </div>
-
-    <button type="submit" class="buzzard-btn">Acessar conta</button>
-
-    <div class="h-0.5 bg-bzd-orange w-full"></div>
-
-    <a [routerLink]="['/auth', 'register']" class="buzzard-link">Criar conta</a>
-  </form>
-</div> -->
-
-
 <div class="flex h-full">
   <div class="w-1/2 h-full flex justify-center items-center">
     <div
@@ -69,7 +30,7 @@
             placeholder="caetano.gornes@gmail.com"
             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
           />
-          <p *ngIf="emailValid" class="text-red-500">Email inválido</p>
+          <p class="text-red-500">Email inválido</p>
         </div>
 
         <div>
@@ -83,7 +44,7 @@
             placeholder="Digite sua senha"
             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
           />
-          <div *ngIf="passwordValid" class="text-red-500">
+          <div class="text-red-500">
             <p>Senha incorreta</p>
           </div>
         </div>
