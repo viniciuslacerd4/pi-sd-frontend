@@ -1,15 +1,15 @@
-<section
-   class="mt-24 bg-bzd-orange-light flex justify-between items-center px-80">  <!-- Criei essa mt para quando criar o header fixo não cobrir a page -->
+<section class="bg-bzd-orange-light flex justify-between items-center px-80">
   <div class="w-2/5 grid gap-8">
     <h1 class="text-5xl font-bold text-bzd-orange-dark">
       Invista no <span class="text-white">Urubu do Pix</span> e faça seu
       dinheiro voar alto em direção ao <span class="text-white">lucro!</span>
     </h1>
 
-    <button
-      class="w-52 bg-bzd-orange hover:bg-bzd-orange-dark border hover:border-gray-200 hover:text-gray-200 text-white font-bold py-2 rounded-lg">
+    <a
+      class="w-52 bg-bzd-orange hover:bg-bzd-orange-dark border hover:border-gray-200 hover:text-gray-200 text-white font-bold py-2 rounded-lg text-center"
+      [routerLink]="['/auth', 'register']">
       QUERO SER RICO
-    </button>
+    </a>
 
     <p class="text-white text-lg">
       Quer transformar seu dinheiro em oportunidades de sucesso? Então venha
@@ -20,6 +20,6 @@
   </div>
 
   <picture>
-    <img src="/images/bg-tela-principal.png" alt=""/>
+    <img src="/images/bg-tela-principal.png" alt="" />
   </picture>
 </section>
