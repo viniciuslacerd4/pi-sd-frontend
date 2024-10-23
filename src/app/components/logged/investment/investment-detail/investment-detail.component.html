@@ -3,7 +3,7 @@
   <p>Carregando</p>
 </div>
 }@else {
-<div class="flex justify-between gap-3 text-gray-200">
+<div class="flex justify-between gap-3">
   <div class="w-1/2">
     <h1 class="text-2xl font-bold">
       {{ investment.product.name }}
@@ -75,9 +75,9 @@
         </p>
       </div>
 
-      <div class="h-full flex flex-col justify-end">
+      <div class="">
         @if(!investment.isSold){
-        <button type="button" class="buzzard-btn h-fit" (click)="sell()">
+        <button type="button" class="bzd-btn-primary" (click)="sell()">
           Resgatar
         </button>
         }@else{

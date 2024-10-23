@@ -2,13 +2,13 @@
   <form
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
-    class="flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
+    class="space-y-4 border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
   >
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="name">Nome</label>
+    <div>
+      <label class="bzd-form-label" for="name">Nome</label>
       <input
         placeholder="Nome completo"
-        class="buzzard-form-input"
+        class="bzd-form-input"
         type="text"
         name="name"
         formControlName="name"
@@ -18,11 +18,11 @@
       }
     </div>
 
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="document">Documento</label>
+    <div>
+      <label class="bzd-form-label" for="document">Documento</label>
       <input
         placeholder="Apenas números"
-        class="buzzard-form-input"
+        class="bzd-form-input"
         type="text"
         name="document"
         formControlName="document"
@@ -33,6 +33,6 @@
       }
     </div>
 
-    <button type="submit" class="buzzard-btn">Atualizar perfil</button>
+    <button type="submit" class="bzd-btn-primary">Atualizar perfil</button>
   </form>
 </div>
