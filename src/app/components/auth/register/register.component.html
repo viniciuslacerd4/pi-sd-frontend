@@ -1,7 +1,7 @@
 <div class="flex h-full">
   <div class="w-1/2 h-full">
     <img
-      src="/images/bzd-login.png"
+      src="/images/bzd-login-cover.png"
       alt="Buzzard login"
       class="h-full w-full object-cover"
     />
@@ -12,7 +12,7 @@
       class="border border-bzd-orange rounded-lg p-8 w-1/2 shadow-md bg-white"
     >
       <div class="flex justify-center mb-4">
-        <img src="/images/buzzard_logo.png" alt="Buzzard Logo" class="h-32" />
+        <img src="/images/bzd-main-logo.png" alt="Buzzard Logo" class="h-32" />
       </div>
       <h1 class="text-2xl font-bold text-center mb-4">
         Bem-vindo ao Buzzard PIX
@@ -24,9 +24,7 @@
         class="space-y-4"
       >
         <div>
-          <label for="email" class="block text-bzd-orange font-semibold mb-1">
-            E-mail
-          </label>
+          <label for="email" class="bzd-form-label"> E-mail </label>
           <input
             id="email"
             type="email"
@@ -40,18 +38,13 @@
         </div>
 
         <div>
-          <label
-            for="password"
-            class="block text-bzd-orange font-semibold mb-1"
-          >
-            Senha
-          </label>
+          <label for="password" class="bzd-form-label"> Senha </label>
           <input
             id="password"
             type="password"
             formControlName="password"
             placeholder="Digite sua senha"
-            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
+            class="bzd-form-input"
           />
           @if(passwordValid){
           <div class="text-red-500">
@@ -68,10 +61,7 @@
         </div>
 
         <div>
-          <label
-            for="confirmPassword"
-            class="block text-bzd-orange font-semibold mb-1"
-          >
+          <label for="confirmPassword" class="bzd-form-label">
             Repita a senha
           </label>
           <input
@@ -79,27 +69,18 @@
             type="password"
             formControlName="confirmPassword"
             placeholder="Repita sua senha"
-            class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
+            class="bzd-form-input"
           />
           @if(passwordValid){
           <p class="text-red-500">As senhas devem ser iguais</p>
           }
         </div>
 
-        <button
-          type="submit"
-          class="w-full bg-bzd-orange hover:bg-bzd-orange-dark text-white font-bold py-2 rounded-lg"
-        >
-          Criar
-        </button>
+        <button type="submit" class="bzd-btn-primary">Criar</button>
 
-        <button
-          type="button"
-          [routerLink]="['/auth', 'register']"
-          class="w-full border border-bzd-orange hover:border-bzd-orange-dark text-bzd-orange hover:text-bzd-orange-dark font-bold py-2 rounded-lg"
-        >
+        <a class="bzd-btn-secondary" [routerLink]="['/auth', 'login']">
           Já tenho conta
-        </button>
+        </a>
       </form>
     </div>
   </div>
