@@ -1,6 +1,6 @@
-<section class="bg-bzd-orange  flex justify-between">
-  <div class="w-[65%]">
-    <h1 class="text-4xl text-white py-3">O que é urubu do pix</h1>
+<section class="bg-bzd-orange  flex justify-between pt-8">
+  <div class="w-1/2 pl-40 ">
+    <h1 class="text-5xl text-white py-3">O que é urubu do pix</h1>
     <p class="text-xl text-white py-2"><span class="text-black font-semibold">{{ product.name }}</span> é um
       investimento de
       alto rendimento diário de <span class="text-black font-semibold">{{ product.dailyYield * 100 }}%</span>,
@@ -14,21 +14,23 @@
       simplicidade e transparência, é uma alternativa atraente para quem busca retorno financeiro elevado de
       forma descomplicada e acessível</p>
   </div>
-  <div class=""><img src="/images/urubu-cartola.svg" class="w-[75%] h-full"></div>
+  <div class=""><img src="/images/urubu-cartola.png" class="w-3/4 h-full"></div>
 </section>
 
 <section class="flex flex-col items-center text-white ">
   <h1 class="text-5xl font-bold text-black py-6">Vamos começar a investir!</h1>
   <h1 class="text-3xl font-bold text-black py-2">Quanto você deseja investir ?</h1>
   <form class="" [formGroup]="formgroup" (ngSubmit)="onFormSubmit()">
-    <div class="w-full flex text-black pt-5">
+    <div class="w-full flex items-center text-black pt-5">
       <label for="" class="text-2xl font-bold">R$</label>
-      <input class="text-xl  w-full bg-bzd-orange hover:bg-bzd-orange-dark text-white font-bold py-2 rounded-lg"
-        type="number" name="amount" formControlName="amount" />
+      <input class="text-2xl text-bzd-orange w-full focus:outline-bzd-orange font-bold py-2 rounded-lg" type="number"
+        name="amount" formControlName="amount" value="" />
     </div>
 
-    <div class="flex justify-center pt-10"><button type="submit"
-        class="text-white text-2xl font-semibold bg-bzd-orange rounded-lg w-[75%] h-full py-1 ">Confirmar</button></div>
+    <div class="flex justify-center pt-10">
+      <button type="submit"
+        class="text-white text-2xl font-semibold bg-bzd-orange rounded-lg w-3/4 h-full py-1 ">Confirmar</button>
+    </div>
   </form>
 
 </section>
