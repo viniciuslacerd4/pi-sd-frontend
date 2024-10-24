@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (transaction of transactions; track $index) {
+      @for (transaction of transactionPageable.content; track $index) {
       <tr class="bg-bzd-orange-light border-b hover:bg-gray-500">
         <th
           scope="row"
@@ -28,7 +28,7 @@
           {{ transaction.type }}
         </td>
         <td class="px-6 py-4 text-right">
-          <a href="#" class="buzzard-link">Detalhes</a>
+          <a href="#" class="bzd-link">Detalhes</a>
         </td>
       </tr>
       }

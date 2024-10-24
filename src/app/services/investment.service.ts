@@ -5,6 +5,7 @@ import { InvestmentBuyRequest } from '../models/investment-buy-request.model';
 import { InvestmentResponse } from '../models/investment-response.model';
 import { InvestmentSellRequest } from '../models/investment-sell-request.model';
 import { HttpAppService } from './http-app.service';
+import { Pageable } from '../models/pageable.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,10 @@ export class InvestmentService extends HttpAppService {
     super();
   }
 
-  public findAll(): Observable<InvestmentResponse[]> {
-    return this.httpClient.get<InvestmentResponse[]>(this.getEndpoint());
+  public findAll(): Observable<Pageable<InvestmentResponse>> {
+    return this.httpClient.get<Pageable<InvestmentResponse>>(
+      this.getEndpoint()
+    );
   }
 
   public findById(id: number): Observable<InvestmentResponse> {

@@ -11,34 +11,21 @@
       </div>
     </div>
 
-    <div class="p-6">
-      <div class="space-y-4">
-        <div class="flex justify-between">
-          <label class="font-semibold">Nome:</label>
-          <span>Caetano Gomes da Silva</span>
-        </div>
-
-        <hr class="border-t border-orange-300" />
-
-        <div class="flex justify-between">
-          <label class="font-semibold">E-mail:</label>
-          <span>caetano.gomes&#64;gmail.com</span>
-        </div>
-
-        <hr class="border-t border-orange-300" />
-
-        <div class="flex justify-between">
-          <label class="font-semibold">Telefone:</label>
-          <span>(88) 9 9493.2728</span>
-        </div>
-
-        <hr class="border-t border-orange-300" />
-
-        <div class="flex justify-between">
-          <label class="font-semibold">Data de Nascimento:</label>
-          <span>31/02/2000</span>
-        </div>
-      </div>
+    <div>
+      <label class="bzd-form-label" for="document">Documento</label>
+      <input
+        placeholder="Apenas números"
+        class="bzd-form-input"
+        type="text"
+        name="document"
+        formControlName="document"
+      />
+      @if (documentValid) {
+      <p class="text-red-500">Deve conter pelo menos 9 caracteres</p>
+      <p class="text-red-500">Somente números</p>
+      }
     </div>
-  </div>
+
+    <button type="submit" class="bzd-btn-primary">Atualizar perfil</button>
+  </form>
 </div>
