@@ -8,6 +8,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { JwtUser } from '../../../models/jwt-user.model';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -19,10 +20,21 @@ import { JwtUser } from '../../../models/jwt-user.model';
 export class LoginComponent implements OnInit {
   formgroup: FormGroup;
 
+  get emailInvalid() {
+    const email = this.formgroup.get('email');
+    return email.invalid && (email.touched || email.dirty);
+  }
+
+  get passwordInvalid() {
+    const password = this.formgroup.get('password');
+    return password.invalid && (password.touched || password.dirty);
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -39,10 +51,21 @@ export class LoginComponent implements OnInit {
       .login(this.formgroup.value.email, this.formgroup.value.password)
       .subscribe({
         next: (jwtUser: JwtUser) => {
+          this.toastService.addToast({
+            title: 'Sucesso',
+            message: 'Login efetuado com sucesso!',
+            type: 'success',
+            timeout: 5000,
+          });
           this.router.navigate(['/']);
         },
         error: (error) => {
-          console.log('Error logging in: ' + error);
+          this.toastService.addToast({
+            title: 'Erro',
+            message: 'Email ou senha inválidos',
+            type: 'error',
+            timeout: 5000,
+          });
         },
       });
   }
