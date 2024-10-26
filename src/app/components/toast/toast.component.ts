@@ -16,6 +16,37 @@ export class ToastComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
+  getColor(type: string, toastType: string): string {
+    let color = '';
+    switch (toastType) {
+      case 'error':
+        color = 'red';
+        break;
+      case 'success':
+        color = 'green';
+        break;
+      case 'warning':
+        color = 'yellow';
+        break;
+      case 'info':
+        color = 'blue';
+        break;
+      default:
+        throw new Error('Invalid toast type: ' + toastType);
+    }
+
+    switch (type) {
+      case 'bg':
+        return `bg-${color}-300`;
+      case 'border':
+        return `border-${color}-600`;
+      case 'text':
+        return `text-${color}-800`;
+      default:
+        throw new Error('Invalid type: ' + type);
+    }
+  }
+
   constructor(private toastService: ToastService) {}
 
   ngOnInit(): void {
