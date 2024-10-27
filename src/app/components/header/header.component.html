@@ -1,5 +1,6 @@
 <header
-  class="bg-bzd-orange border-b border-bzd-orange-dark px-24 fixed top-0 left-0 right-0 z-50">
+  class="bg-bzd-orange border-b border-bzd-orange-dark px-24 fixed top-0 left-0 right-0 z-10"
+>
   <nav class="flex px-4 py-2 flex-nowrap justify-between">
     <div>
       <ul class="flex items-center gap-4">
@@ -7,34 +8,42 @@
           <img
             class="w-20 h-20 max-w-full"
             src="/images/bzd-main-logo.png"
-            alt="Logo"/>
+            alt="Logo"
+          />
         </li>
 
         @if (user != null) {
         <li>
           <a
             class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
-            [routerLink]="['/']">
-            Inicio</a>
+            [routerLink]="['/']"
+          >
+            Inicio</a
+          >
         </li>
         <li>
           <a
             class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
-            [routerLink]="['/investments']">
+            [routerLink]="['/investments']"
+          >
             Investimentos
           </a>
         </li>
         <li>
           <a
             class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
-            [routerLink]="['/transactions']">
-            Histórico de transação</a>
+            [routerLink]="['/transactions']"
+          >
+            Histórico de transação</a
+          >
         </li>
         <li>
           <a
             class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
-            [routerLink]="['/profile']">
-            Meu perfil</a>
+            [routerLink]="['/profile']"
+          >
+            Meu perfil</a
+          >
         </li>
         }
       </ul>
@@ -43,17 +52,20 @@
     <div class="flex items-center justify-items-center gap-4">
       @if (user != null) {
       <div
-        class="flex gap-2 items-center justify-items-center text-center text-white">
+        class="flex gap-2 items-center justify-items-center text-center text-white"
+      >
         <a
           [routerLink]="['/investments']"
-          class="border border-white rounded-lg p-1">
+          class="border border-white rounded-lg p-1 hover:border-bzd-orange-dark hover:text-bzd-orange-dark"
+        >
           <h2 class="text-lg">Investido</h2>
           <p class="text-2xl font-bold">----------</p>
         </a>
 
         <a
           [routerLink]="['/transfers']"
-          class="border border-white rounded-lg p-1">
+          class="border border-white rounded-lg p-1 hover:border-bzd-orange-dark hover:text-bzd-orange-dark"
+        >
           <h2 class="text-lg">Saldo</h2>
           <p class="text-2xl font-bold">{{ balance | currency : "BRL" }}</p>
         </a>
@@ -62,12 +74,14 @@
       <div class="grid gap-1">
         <a
           [routerLink]="['/profile']"
-          class="w-full border font-bold p-0.5 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark">
+          class="w-full border font-bold p-0.5 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark"
+        >
           Editar <i class="fa-solid fa-pen-to-square pl-3"></i>
         </a>
         <button
           (click)="onLogout()"
-          class="w-full border font-bold p-0.5 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark">
+          class="w-full border font-bold p-0.5 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark"
+        >
           Sair <i class="fa-solid fa-arrow-right-from-bracket pl-3"></i>
         </button>
       </div>
@@ -75,12 +89,14 @@
       <div class="flex items-center gap-4">
         <a
           [routerLink]="['/auth', 'register']"
-          class="w-full border font-bold p-2 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark text-nowrap">
+          class="w-full border font-bold p-2 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark text-nowrap"
+        >
           Criar conta
         </a>
         <a
           [routerLink]="['/auth', 'login']"
-          class="w-full border font-bold p-2 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark">
+          class="w-full border font-bold p-2 rounded-lg text-center text-white border-white hover:border-bzd-orange-dark hover:text-bzd-orange-dark"
+        >
           Entrar
         </a>
       </div>
