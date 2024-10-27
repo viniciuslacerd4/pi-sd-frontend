@@ -1,18 +1,18 @@
 <div class="grid justify-items-center items-center h-full">
-
   <form
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
-    class="space-y-4 border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit">
+    class="space-y-4 border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
+  >
     <div>
-
       <label class="bzd-form-label" for="name">Nome</label>
       <input
         placeholder="Digite seu nome completo"
         class="bzd-form-input"
         type="text"
         name="name"
-        formControlName="name"/>
+        formControlName="name"
+      />
       @if (nameValid) {
       <p class="text-red-500">O nome precisa ter pelo menos 3 letras.</p>
       }
@@ -25,7 +25,8 @@
         class="bzd-form-input"
         type="text"
         name="document"
-        formControlName="document"/>
+        formControlName="document"
+      />
       @if (documentValid) {
       <p class="text-red-500">Não foi possível identificar o CPF;</p>
       <p class="text-red-500">Somente números.</p>
@@ -39,10 +40,8 @@
         class="bzd-form-input"
         type="tel"
         name="tel"
-        formControlName="tel"/>
-      @if (documentValid) {
-      <p class="text-red-500">Número já cadastrado.</p>
-      }
+        formControlName="tel"
+      />
     </div>
 
     <div>
@@ -52,7 +51,8 @@
         class="bzd-form-input"
         type="date"
         name="dateOfBirth"
-        formControlName="dateOfBirth"/>
+        formControlName="dateOfBirth"
+      />
       @if (documentValid) {
       <p class="text-red-500">Deve ser maior de 18 anos.</p>
       }
