@@ -25,7 +25,9 @@
             placeholder="caetano.gornes@gmail.com"
             class="bzd-form-input"
           />
-          <!-- <p class="text-red-500">Insira um email</p> -->
+          @if(emailInvalid){
+          <p class="text-red-500">Por favor insira seu email</p>
+          }
         </div>
 
         <div>
@@ -37,7 +39,9 @@
             placeholder="Digite sua senha"
             class="bzd-form-input"
           />
-          <!-- <p class="text-red-500">Insira uma senha</p> -->
+          @if(passwordInvalid){
+          <p class="text-red-500">Por favor insira sua senha</p>
+          }
         </div>
 
         <div class="flex justify-between">

@@ -6,6 +6,7 @@ import { InvestmentResponse } from '../models/investment-response.model';
 import { InvestmentSellRequest } from '../models/investment-sell-request.model';
 import { HttpAppService } from './http-app.service';
 import { Pageable } from '../models/pageable.model';
+import { Pagination } from '../models/pagination.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +18,16 @@ export class InvestmentService extends HttpAppService {
     super();
   }
 
-  public findAll(): Observable<Pageable<InvestmentResponse>> {
+  public findAll(
+    pagination: Pagination
+  ): Observable<Pageable<InvestmentResponse>> {
     return this.httpClient.get<Pageable<InvestmentResponse>>(
-      this.getEndpoint()
+      this.getEndpoint(),
+      {
+        params: {
+          ...pagination,
+        },
+      }
     );
   }
 

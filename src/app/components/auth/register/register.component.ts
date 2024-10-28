@@ -8,6 +8,7 @@ import {
 import { CustomValidators } from '../../../utils/custom-validators';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -19,17 +20,17 @@ import { AuthService } from '../../../services/auth.service';
 export class RegisterComponent {
   formgroup: FormGroup;
 
-  get emailValid() {
+  get emailInvalid() {
     const email = this.formgroup.get('email');
     return email.invalid && (email.touched || email.dirty);
   }
 
-  get passwordValid() {
+  get passwordInvalid() {
     const password = this.formgroup.get('password');
     return password.invalid && (password.touched || password.dirty);
   }
 
-  get confirmPasswordValid() {
+  get confirmPasswordInvalid() {
     const confirmPassword = this.formgroup.get('confirmPassword');
     return (
       confirmPassword.invalid &&
@@ -40,7 +41,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -77,7 +79,22 @@ export class RegisterComponent {
           this.router.navigate(['/auth', 'login']);
         },
         error: (error) => {
-          console.log('Error registering: ' + error);
+          if (error.status === 406) {
+            this.toastService.addToast({
+              title: 'Erro',
+              message: 'Email já está em uso',
+              type: 'error',
+              timeout: 5000,
+            });
+          } else {
+            this.toastService.addToast({
+              title: 'Erro',
+              message: 'Erro ao registrar',
+              type: 'error',
+              timeout: 5000,
+            });
+            console.error('Error registering: ' + error.message);
+          }
         },
       });
   }
