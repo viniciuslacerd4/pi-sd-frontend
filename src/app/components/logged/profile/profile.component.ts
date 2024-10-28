@@ -35,6 +35,16 @@ export class ProfileComponent {
     return document.invalid && (document.touched || document.dirty);
   }
 
+  get telphoneInvalid() {
+    const telephone = this.formgroup.get('telephone');
+    return telephone.invalid && (telephone.touched || telephone.dirty);
+  }
+
+  get dateInvalid() {
+    const dateOfBirth = this.formgroup.get('dateOfBirth');
+    return dateOfBirth.invalid && (dateOfBirth.touched || dateOfBirth.dirty);
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
@@ -49,10 +59,19 @@ export class ProfileComponent {
         '',
         [
           Validators.required,
-          Validators.minLength(9),
-          CustomValidators.keyedPattern(/^[0-9]*$/, 'number'),
+          Validators.minLength(11),
+          CustomValidators.keyedPattern(/^[0-9]+$/, 'number'),
         ],
       ],
+      telephone: [
+        '',
+        [
+          Validators.required,
+          CustomValidators.keyedPattern(/(^[0-9]+$)/, 'number'),
+          Validators.minLength(11),
+        ],
+      ],
+      dateOfBirth: ['', Validators.required],
     });
 
     this.authSubscription = this.authService.jwtUser$.subscribe({
@@ -68,6 +87,8 @@ export class ProfileComponent {
     const accountRequest: AccountRequest = {
       name: this.formgroup.get('name').value,
       document: this.formgroup.get('document').value,
+      telephone: this.formgroup.get('telephone').value,
+      dateOfBirth: this.formgroup.get('dateOfBirth').value,
     };
 
     this.accountService.create(accountRequest).subscribe({
