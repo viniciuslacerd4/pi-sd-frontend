@@ -32,7 +32,7 @@
             placeholder="caetano.gornes@gmail.com"
             class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange"
           />
-          @if(emailValid){
+          @if(emailInvalid){
           <p class="text-red-500">Email inválido</p>
           }
         </div>
@@ -46,7 +46,7 @@
             placeholder="Digite sua senha"
             class="bzd-form-input"
           />
-          @if(passwordValid){
+          @if(passwordInvalid){
           <div class="text-red-500">
             <p>A senha deve conter:</p>
             <ul>
@@ -71,7 +71,7 @@
             placeholder="Repita sua senha"
             class="bzd-form-input"
           />
-          @if(passwordValid){
+          @if(confirmPasswordInvalid){
           <p class="text-red-500">As senhas devem ser iguais</p>
           }
         </div>

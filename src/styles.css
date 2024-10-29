@@ -6,12 +6,12 @@
 @layer components {
   .bzd-btn-primary{
     /* FIXME add disabled form ex: disabled:bg-bzd-gray disabled:cursor-not-allowed */
-    @apply flex justify-center w-full bg-bzd-orange hover:bg-bzd-orange-dark text-white font-bold py-2 rounded-lg;
+    @apply flex justify-center w-full bg-bzd-orange hover:bg-bzd-orange-dark text-white font-bold p-2 rounded-lg text-nowrap items-center;
   }  
 
   .bzd-btn-secondary{
     /* FIXME add disabled form */
-    @apply flex justify-center w-full border border-bzd-orange hover:border-bzd-orange-dark text-bzd-orange hover:text-bzd-orange-dark font-bold py-2 rounded-lg;
+    @apply flex justify-center w-full border border-bzd-orange hover:border-bzd-orange-dark text-bzd-orange hover:text-bzd-orange-dark font-bold p-2 rounded-lg text-nowrap items-center;
   }
 
   .bzd-form-input{
