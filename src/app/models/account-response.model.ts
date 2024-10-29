@@ -3,4 +3,6 @@ export interface AccountResponse {
   name: string;
   document: string;
   balance: number;
+  telephone: string;
+  dateOfBirth: Date;
 }

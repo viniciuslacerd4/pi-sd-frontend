@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center h-full">
+<div class="grid justify-items-center items-center h-full">
   <form
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
@@ -7,29 +7,57 @@
     <div>
       <label class="bzd-form-label" for="name">Nome</label>
       <input
-        placeholder="Nome completo"
+        placeholder="Digite seu nome completo"
         class="bzd-form-input"
         type="text"
         name="name"
         formControlName="name"
       />
       @if (nameValid) {
-      <p class="text-red-500">O nome precisa ter pelo menos 3 letras</p>
+      <p class="text-red-500">O nome precisa ter pelo menos 3 letras.</p>
       }
     </div>
 
     <div>
-      <label class="bzd-form-label" for="document">Documento</label>
+      <label class="bzd-form-label" for="document">CPF</label>
       <input
-        placeholder="Apenas números"
+        placeholder="Digite seu CPF"
         class="bzd-form-input"
         type="text"
         name="document"
         formControlName="document"
       />
       @if (documentValid) {
-      <p class="text-red-500">Deve conter pelo menos 9 caracteres</p>
-      <p class="text-red-500">Somente números</p>
+      <p class="text-red-500">Não foi possível identificar o CPF;</p>
+      <p class="text-red-500">Somente números.</p>
+      }
+    </div>
+
+    <div>
+      <label class="bzd-form-label" for="telephone">Telefone</label>
+      <input
+        placeholder="Digite seu número"
+        class="bzd-form-input"
+        type="telephone"
+        name="telephone"
+        formControlName="telephone"
+      />
+      @if (telphoneInvalid) {
+        <p class="text-red-500">Telefone inválido.</p>
+      }
+    </div>
+
+    <div>
+      <label class="bzd-form-label" for="dateOfBirth">Data de nascimento</label>
+      <input
+        placeholder="Digite seu número"
+        class="bzd-form-input"
+        type="date"
+        name="dateOfBirth"
+        formControlName="dateOfBirth"
+      />
+      @if (dateInvalid) {
+      <p class="text-red-500">Deve ser maior de 18 anos.</p>
       }
     </div>
 
