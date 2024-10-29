@@ -25,17 +25,17 @@ export class ProfileComponent {
   formgroup: FormGroup;
   authSubscription: Subscription;
 
-  get nameValid() {
+  get nameInvalid() {
     const name = this.formgroup.get('name');
     return name.invalid && (name.touched || name.dirty);
   }
 
-  get documentValid() {
+  get documentInvalid() {
     const document = this.formgroup.get('document');
     return document.invalid && (document.touched || document.dirty);
   }
 
-  get telphoneInvalid() {
+  get telephoneInvalid() {
     const telephone = this.formgroup.get('telephone');
     return telephone.invalid && (telephone.touched || telephone.dirty);
   }

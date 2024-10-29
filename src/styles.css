@@ -3,12 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  select{
-    appearance: none !important;
-  }
-}
-
 @layer components {
   .bzd-btn-primary{
     /* FIXME add disabled form ex: disabled:bg-bzd-gray disabled:cursor-not-allowed */

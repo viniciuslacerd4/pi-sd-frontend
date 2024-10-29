@@ -13,7 +13,7 @@
         name="name"
         formControlName="name"
       />
-      @if (nameValid) {
+      @if (nameInvalid) {
       <p class="text-red-500">O nome precisa ter pelo menos 3 letras.</p>
       }
     </div>
@@ -27,7 +27,7 @@
         name="document"
         formControlName="document"
       />
-      @if (documentValid) {
+      @if (documentInvalid) {
       <p class="text-red-500">Não foi possível identificar o CPF;</p>
       <p class="text-red-500">Somente números.</p>
       }
@@ -42,8 +42,8 @@
         name="telephone"
         formControlName="telephone"
       />
-      @if (telphoneInvalid) {
-        <p class="text-red-500">Telefone inválido.</p>
+      @if (telephoneInvalid) {
+      <p class="text-red-500">Telefone inválido.</p>
       }
     </div>
 
@@ -57,7 +57,7 @@
         formControlName="dateOfBirth"
       />
       @if (dateInvalid) {
-      <p class="text-red-500">Deve ser maior de 18 anos.</p>
+      <p class="text-red-500">Insira uma data válida</p>
       }
     </div>
 

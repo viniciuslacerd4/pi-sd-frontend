@@ -1,36 +1,53 @@
-<section class="bg-bzd-orange  flex justify-between pt-8">
-  <div class="w-1/2 pl-40 ">
+<section class="bg-bzd-orange flex justify-between pt-8">
+  <div class="w-1/2 pl-40">
     <h1 class="text-5xl text-white py-3">O que é urubu do pix</h1>
-    <p class="text-xl text-white py-2"><span class="text-black font-semibold">{{ product.name }}</span> é um
-      investimento de
-      alto rendimento diário de <span class="text-black font-semibold">{{ product.dailyYield * 100 }}%</span>,
-      aproveitando
-      o sistema Pix para realizar
-      transações ágeis e seguras. <span class="text-black font-semibold">Com valor mínimo de investimento de R$
-        100</span>, essa modalidade permite que
-      qualquer pessoa participe e tenha a chance de multiplicar seus ganhos rapidamente. Além disso, oferece a
-      vantagem de resgate em apenas <span class="text-black font-semibold">um dia útil</span>, proporcionando
-      flexibilidade financeira. Com foco em
-      simplicidade e transparência, é uma alternativa atraente para quem busca retorno financeiro elevado de
-      forma descomplicada e acessível</p>
+    <p class="text-xl text-white py-2">
+      <span class="text-black font-semibold">{{ product.name }}</span> é um
+      investimento de alto rendimento diário de
+      <span class="text-black font-semibold">
+        {{ product.dailyYield * 100 }}%
+      </span>
+      , aproveitando o sistema Pix para realizar transações ágeis e seguras.
+      <span class="text-black font-semibold">
+        Com valor mínimo de investimento de R$ 100
+      </span>
+      , essa modalidade permite que qualquer pessoa participe e tenha a chance
+      de multiplicar seus ganhos rapidamente. Além disso, oferece a vantagem de
+      resgate em apenas
+      <span class="text-black font-semibold">um dia útil</span>, proporcionando
+      flexibilidade financeira. Com foco em simplicidade e transparência, é uma
+      alternativa atraente para quem busca retorno financeiro elevado de forma
+      descomplicada e acessível
+    </p>
   </div>
-  <div class=""><img src="/images/urubu-cartola.png" class="w-3/4 h-full"></div>
+  <div class="">
+    <img src="/images/bzd-product-cover.png" class="w-3/4 h-full" />
+  </div>
 </section>
 
-<section class="flex flex-col items-center text-white ">
+<section class="flex flex-col items-center text-white">
   <h1 class="text-5xl font-bold text-black py-6">Vamos começar a investir!</h1>
-  <h1 class="text-3xl font-bold text-black py-2">Quanto você deseja investir ?</h1>
+  <h1 class="text-3xl font-bold text-black py-2">
+    Quanto você deseja investir?
+  </h1>
   <form class="" [formGroup]="formgroup" (ngSubmit)="onFormSubmit()">
     <div class="w-full flex items-center text-black pt-5">
       <label for="" class="text-2xl font-bold">R$</label>
-      <input class="text-2xl text-bzd-orange w-full focus:outline-bzd-orange font-bold py-2 rounded-lg" type="number"
-        name="amount" formControlName="amount" value="" />
+      <input
+        class="text-2xl text-bzd-orange w-full focus:outline-bzd-orange font-bold py-2 rounded-lg"
+        type="number"
+        name="amount"
+        formControlName="amount"
+      />
     </div>
 
     <div class="flex justify-center pt-10">
-      <button type="submit"
-        class="text-white text-2xl font-semibold bg-bzd-orange rounded-lg w-3/4 h-full py-1 ">Confirmar</button>
+      <button
+        type="submit"
+        class="text-white text-2xl font-semibold bg-bzd-orange rounded-lg w-3/4 h-full py-1"
+      >
+        Confirmar
+      </button>
     </div>
   </form>
-
 </section>
