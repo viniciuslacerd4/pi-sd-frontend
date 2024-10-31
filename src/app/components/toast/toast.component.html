@@ -5,7 +5,7 @@
   <div class="bg-yellow-300 border border-yellow-600 text-yellow-800"></div>
   <div class="bg-blue-300 border border-blue-600 text-blue-800"></div>
 </div>
-<div class="flex flex-col gap-2 items-end z-10">
+<div class="flex flex-col gap-2 items-end z-50">
   @for (toastObj of toasts; track $index) {
   <div
     class="{{ getColor('bg', toastObj.toast.type) }} 
