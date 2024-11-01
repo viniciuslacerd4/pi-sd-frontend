@@ -1,0 +1,39 @@
+<div hidden>
+  <!-- Adiciona essas cores e estlos no bundle de CSS do tailwind, não apagar -->
+  <div class="bg-red-300 border border-red-600 text-red-800"></div>
+  <div class="bg-green-300 border border-green-600 text-green-800"></div>
+  <div class="bg-yellow-300 border border-yellow-600 text-yellow-800"></div>
+  <div class="bg-blue-300 border border-blue-600 text-blue-800"></div>
+</div>
+<div class="flex flex-col gap-2 items-end z-50">
+  @for (toastObj of toasts; track $index) {
+  <div
+    class="{{ getColor('bg', toastObj.toast.type) }} 
+    {{ getColor('text', toastObj.toast.type) }} 
+    w-fit p-2 rounded-lg shadow border 
+    {{ getColor('border', toastObj.toast.type) }}"
+    role="alert"
+  >
+    <div class="flex">
+      <div class="ms-3 text-sm font-normal">
+        @if(toastObj.toast.title ){
+        <span class="mb-1 text-sm font-semibold">
+          {{ toastObj.toast.title }}
+        </span>
+        }
+        <div class="mb-2 text-sm font-normal">
+          {{ toastObj.toast.message }}
+        </div>
+      </div>
+      <button
+        type="button"
+        class="ms-auto -mx-1 -my-1 justify-center items-center flex-shrink-0 text-bzd-orange-dark rounded-lg hover:bg-bzd-orange-light inline-flex h-6 w-6"
+        aria-label="Close"
+        (click)="onClose($index)"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+  }
+</div>

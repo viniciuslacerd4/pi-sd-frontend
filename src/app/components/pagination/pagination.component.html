@@ -1,0 +1,9 @@
+<div class="flex gap-0.5 m-2 items-end">
+  @for (n of pageNumbers; track $index) {
+  <div>
+    <a class="bzd-btn-secondary" [routerLink]="[]" [queryParams]="{ page: n }">
+      {{ n }}
+    </a>
+  </div>
+  }
+</div>

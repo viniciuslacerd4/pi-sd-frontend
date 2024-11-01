@@ -1,38 +1,66 @@
-<div class="flex justify-center items-center h-full">
+<div class="grid justify-items-center items-center h-full">
   <form
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
-    class="flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
+    class="space-y-4 border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
   >
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="name">Nome</label>
+    <div>
+      <label class="bzd-form-label" for="name">Nome</label>
       <input
-        placeholder="Nome completo"
-        class="buzzard-form-input"
+        placeholder="Digite seu nome completo"
+        class="bzd-form-input"
         type="text"
         name="name"
         formControlName="name"
       />
-      @if (nameValid) {
-      <p class="text-red-500">O nome precisa ter pelo menos 3 letras</p>
+      @if (nameInvalid) {
+      <p class="text-red-500">O nome precisa ter pelo menos 3 letras.</p>
       }
     </div>
 
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="document">Documento</label>
+    <div>
+      <label class="bzd-form-label" for="document">CPF</label>
       <input
-        placeholder="Apenas números"
-        class="buzzard-form-input"
+        placeholder="Digite seu CPF"
+        class="bzd-form-input"
         type="text"
         name="document"
         formControlName="document"
       />
-      @if (documentValid) {
-      <p class="text-red-500">Deve conter pelo menos 9 caracteres</p>
-      <p class="text-red-500">Somente números</p>
+      @if (documentInvalid) {
+      <p class="text-red-500">Não foi possível identificar o CPF;</p>
+      <p class="text-red-500">Somente números.</p>
       }
     </div>
 
-    <button type="submit" class="buzzard-btn">Atualizar perfil</button>
+    <div>
+      <label class="bzd-form-label" for="telephone">Telefone</label>
+      <input
+        placeholder="Digite seu número"
+        class="bzd-form-input"
+        type="telephone"
+        name="telephone"
+        formControlName="telephone"
+      />
+      @if (telephoneInvalid) {
+      <p class="text-red-500">Telefone inválido.</p>
+      }
+    </div>
+
+    <div>
+      <label class="bzd-form-label" for="dateOfBirth">Data de nascimento</label>
+      <input
+        placeholder="Digite seu número"
+        class="bzd-form-input"
+        type="date"
+        name="dateOfBirth"
+        formControlName="dateOfBirth"
+      />
+      @if (dateInvalid) {
+      <p class="text-red-500">Insira uma data válida</p>
+      }
+    </div>
+
+    <button type="submit" class="bzd-btn-primary">Atualizar perfil</button>
   </form>
 </div>

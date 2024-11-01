@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ProductResponse } from '../models/product-response.model';
 import { Observable } from 'rxjs';
+import { Pageable } from '../models/pageable.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,8 @@ export class ProductService extends HttpAppService {
     super();
   }
 
-  public findAll(): Observable<ProductResponse[]> {
-    return this.httpClient.get<ProductResponse[]>(this.getEndpoint());
+  public findAll(): Observable<Pageable<ProductResponse>> {
+    return this.httpClient.get<Pageable<ProductResponse>>(this.getEndpoint());
   }
 
   public findById(id: number): Observable<ProductResponse> {

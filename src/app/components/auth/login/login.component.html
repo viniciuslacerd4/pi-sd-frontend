@@ -1,37 +1,70 @@
-<div class="flex justify-center items-center h-full">
-  <form
-    class="flex flex-col items-center border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
-    [formGroup]="formgroup"
-    (ngSubmit)="onFormSubmit()"
-  >
-    <h1 class="text-gray-200 text-2xl font-bold">Entrar na sua conta</h1>
+<div class="flex h-full">
+  <div class="w-1/2 h-full flex justify-center items-center">
+    <div
+      class="border border-bzd-orange rounded-lg p-8 w-1/2 shadow-md bg-white"
+    >
+      <div class="flex justify-center mb-4">
+        <img src="/images/bzd-main-logo.png" alt="Buzzard Logo" class="h-32" />
+      </div>
 
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="email">Email</label>
-      <input
-        placeholder="Digite seu e-mail"
-        class="buzzard-form-input"
-        type="email"
-        name="email"
-        formControlName="email"
-      />
+      <h1 class="text-2xl font-bold text-center mb-4">
+        Bem-vindo ao Buzzard PIX
+      </h1>
+
+      <form
+        [formGroup]="formgroup"
+        (ngSubmit)="onFormSubmit()"
+        class="space-y-4"
+      >
+        <div>
+          <label for="email" class="bzd-form-label"> E-mail </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="caetano.gornes@gmail.com"
+            class="bzd-form-input"
+          />
+          @if(emailInvalid){
+          <p class="text-red-500">Por favor insira seu email</p>
+          }
+        </div>
+
+        <div>
+          <label for="password" class="bzd-form-label"> Senha </label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Digite sua senha"
+            class="bzd-form-input"
+          />
+          @if(passwordInvalid){
+          <p class="text-red-500">Por favor insira sua senha</p>
+          }
+        </div>
+
+        <div class="flex justify-between">
+          <a class="bzd-link text-sm" [routerLink]="['/']">
+            Esqueci minha senha
+          </a>
+        </div>
+
+        <button type="submit" class="bzd-btn-primary">Acessar</button>
+
+        <a class="bzd-btn-secondary" [routerLink]="['/auth', 'register']">
+          Cadastrar conta
+        </a>
+      </form>
     </div>
+  </div>
 
-    <div class="w-full flex flex-col">
-      <label class="buzzard-form-label" for="senha">Senha</label>
-      <input
-        placeholder="Digite sua senha"
-        class="buzzard-form-input"
-        type="password"
-        name="senha"
-        formControlName="password"
-      />
-    </div>
-
-    <button type="submit" class="buzzard-btn">Acessar conta</button>
-
-    <div class="h-0.5 bg-bzd-orange w-full"></div>
-
-    <a [routerLink]="['/auth', 'register']" class="buzzard-link">Criar conta</a>
-  </form>
+  <!-- Imagem Lateral -->
+  <div class="w-1/2 h-full">
+    <img
+      src="/images/bzd-register-cover.png"
+      alt="Buzzard login"
+      class="h-full w-full object-cover"
+    />
+  </div>
 </div>

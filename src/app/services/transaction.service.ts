@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { TransactionResponse } from '../models/transaction-response.model';
 import { HttpAppService } from './http-app.service';
 import { TransactionRequest } from '../models/transaction-request.model';
+import { Pageable } from '../models/pageable.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,10 @@ export class TransactionService extends HttpAppService {
     super();
   }
 
-  public findAll(): Observable<TransactionResponse[]> {
-    return this.httpClient.get<TransactionResponse[]>(this.getEndpoint());
+  public findAll(): Observable<Pageable<TransactionResponse>> {
+    return this.httpClient.get<Pageable<TransactionResponse>>(
+      this.getEndpoint()
+    );
   }
 
   public findById(id: number): Observable<TransactionResponse> {

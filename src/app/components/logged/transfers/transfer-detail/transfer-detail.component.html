@@ -1,0 +1,4 @@
+<p>Id da transação:{{ transaction.id }}</p>
+<p>Momento:{{ transaction.timestamp | date : "dd/MM/yy - HH:mm" }}</p>
+<p>Valor: R$ {{ transaction.value | number : "1.2-2" }}</p>
+<p>Tipo: {{ transaction.type }}</p>

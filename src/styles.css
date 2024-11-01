@@ -4,10 +4,29 @@
 @tailwind utilities;
 
 @layer components {
-  .buzzard-link {
+  .bzd-btn-primary{
+    /* FIXME add disabled form ex: disabled:bg-bzd-gray disabled:cursor-not-allowed */
+    @apply flex justify-center w-full bg-bzd-orange hover:bg-bzd-orange-dark text-white font-bold p-2 rounded-lg text-nowrap items-center;
+  }  
+
+  .bzd-btn-secondary{
+    /* FIXME add disabled form */
+    @apply flex justify-center w-full border border-bzd-orange hover:border-bzd-orange-dark text-bzd-orange hover:text-bzd-orange-dark font-bold p-2 rounded-lg text-nowrap items-center;
+  }
+
+  .bzd-form-input{
+    @apply w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-bzd-orange;
+  }
+
+  .bzd-form-label{
+    @apply block text-bzd-orange font-semibold mb-1;
+  }
+
+  .bzd-link {
     @apply text-bzd-orange hover:text-bzd-orange-dark underline;
   }
 
+  /* THE METHODS BELOW ARE DEPRECATED DO NOT USE THEM!! */
   .buzzard-btn {
     @apply inline-flex items-center px-3 py-2 text-sm font-medium text-center text-bzd-white rounded-lg bg-bzd-orange hover:bg-bzd-orange-dark disabled:bg-bzd-gray disabled:cursor-not-allowed;
   }
@@ -19,4 +38,5 @@
   .buzzard-form-input{
     @apply bg-transparent text-bzd-orange-light border-2 border-bzd-orange rounded-lg h-12 p-2;
   }
+
 }
