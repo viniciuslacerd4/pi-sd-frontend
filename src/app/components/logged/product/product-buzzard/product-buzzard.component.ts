@@ -12,6 +12,7 @@ import { ProductResponse } from '../../../../models/product-response.model';
 import { BalanceService } from '../../../../services/balance.service';
 import { InvestmentService } from '../../../../services/investment.service';
 import { ProductService } from '../../../../services/product.service';
+import { CustomValidators } from '../../../../utils/custom-validators';
 
 @Component({
   selector: 'app-product-buzzard',
@@ -25,6 +26,11 @@ export class ProductBuzzardComponent {
   product: ProductResponse;
   subscription: Subscription;
 
+  get amountInvalid() {
+    const amount = this.formgroup.get('amount');
+    return amount.invalid && (amount.touched || amount.dirty);
+  }
+
   constructor(
     private productService: ProductService,
     private investmentService: InvestmentService,
@@ -36,7 +42,14 @@ export class ProductBuzzardComponent {
 
   ngOnInit(): void {
     this.formgroup = this.formBuilder.group({
-      amount: ['0', [Validators.required, Validators.min(0.01)]],
+      amount: [
+        '',
+        [
+          Validators.required,
+          CustomValidators.keyedPattern(/^[0-9]+(\.[0-9]{1,2})?$/, 'number'),
+          Validators.min(0.1),
+        ],
+      ],
     });
 
     this.activatedRoute.params.subscribe((params) => {
