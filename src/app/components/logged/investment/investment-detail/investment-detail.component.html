@@ -1,18 +1,25 @@
+<div class="absolute flex w-screen h-screen -z-50">
+  <div class="w-1/2 h-full"></div>
+  <div class="w-1/2 h-full bg-bzd-orange"></div>
+</div>
+
 @if(investment == null){
 <div class="flex flex-col justify-center align-middle text-cor-0">
   <p>Carregando</p>
 </div>
 }@else {
-<div class="flex justify-between gap-3">
-  <div class="w-1/2">
-    <h1 class="text-2xl font-bold">
-      {{ investment.product.name }}
-    </h1>
+<div class="flex px-24 gap-5">
+  <div class="flex-1 flex flex-col gap-5 py-5">
+    <div>
+      <h1 class="text-4xl py-3 text-bzd-orange font-semibold">
+        {{ investment.product.name }}
+      </h1>
+      <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
+    </div>
 
-    <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
-
-    <div class="mb-2">
-      <p class="text-lg font-semibold">Descrição</p>
+    <div>
+      <p class="text-lg font-semibold text-bzd-orange">Descrição</p>
+      <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo odit
         facilis enim ipsam eius eaque possimus accusamus, eum laboriosam quaerat
@@ -20,71 +27,86 @@
         nesciunt.
       </p>
     </div>
+
+    <div>
+      <p class="text-lg font-semibold text-bzd-orange">Detalhes</p>
+      <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
+      <div class="flex justify-between">
+        <div>
+          <p class="">Resgate</p>
+          <p class="text-2xl font-black text-bzd-orange">1 dia útil</p>
+        </div>
+
+        <div>
+          <p class="">Rendimento</p>
+          <p>
+            <strong class="text-2xl font-black text-bzd-orange">
+              {{ investment.product.dailyYield * 100 }}%
+            </strong>
+            / dia
+          </p>
+        </div>
+
+        <div>
+          <p class="">Compra</p>
+          <p class="text-2xl font-black text-bzd-orange">
+            {{ investment.buyTime | date : "dd/MM/yy - HH:mm" }}
+          </p>
+        </div>
+      </div>
+      <div class="flex justify-between text-nowrap gap-5">
+        <div>
+          <p class="">Venda</p>
+          <p class="text-2xl font-black text-bzd-orange">
+            @if(investment.isSold){
+            {{ investment.sellTime | date : "dd/MM/yy - HH:mm" }}
+            }@else{ ---------------- }
+          </p>
+        </div>
+        <div class="pt-3 w-full">
+          <a
+            [routerLink]="['/products', investment.product.id]"
+            class="bzd-btn-secondary"
+          >
+            Ver produto
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-lg font-semibold text-bzd-orange">Valores</p>
+      <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
+      <div class="flex justify-between items-end">
+        <div>
+          <p class="">Investido</p>
+          <p class="text-2xl font-black text-bzd-orange">
+            R$ {{ investment.buyPrice | number : "1.2-2" }}
+          </p>
+        </div>
+
+        <div>
+          <p class="text-lg font-semibold">
+            {{ investment.isSold ? "Valor de venda" : "Estimativa de resgate" }}
+          </p>
+          <p class="text-4xl font-black text-bzd-orange">
+            R$ {{ investment.sellPrice | number : "1.2-2" }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="">
+      @if(!investment.isSold){
+      <button type="button" class="bzd-btn-primary" (click)="sell()">
+        Resgatar
+      </button>
+      }
+    </div>
   </div>
 
-  <div
-    class="w-1/2 flex flex-col border-solid border-bzd-orange border-2 rounded-2xl p-3 gap-3"
-  >
-    <div class="flex justify-between">
-      <div>
-        <p class="">Resgate</p>
-        <p class="text-2xl font-black text-bzd-orange">1 dia útil</p>
-      </div>
-
-      <div>
-        <p class="">Rendimento</p>
-        <p>
-          <strong class="text-2xl font-black text-bzd-orange">
-            {{ investment.product.dailyYield * 100 }}%
-          </strong>
-          / dia
-        </p>
-      </div>
-
-      <div>
-        <p class="">Compra</p>
-        <p class="text-2xl font-black text-bzd-orange">
-          {{ investment.buyTime | date : "dd/MM/yy - HH:mm" }}
-        </p>
-      </div>
-
-      <div>
-        <p class="">Venda</p>
-        <p class="text-2xl font-black text-bzd-orange">
-          @if(investment.isSold){
-          {{ investment.sellTime | date : "dd/MM/yy - HH:mm" }}
-          }@else{ ---------------- }
-        </p>
-      </div>
-    </div>
-
-    <div class="flex justify-between items-end">
-      <div>
-        <p class="">Investido</p>
-        <p class="text-2xl font-black text-bzd-orange">
-          R$ {{ investment.buyPrice | number : "1.2-2" }}
-        </p>
-      </div>
-
-      <div>
-        <p class="text-lg font-semibold">
-          {{ investment.isSold ? "Valor de venda" : "Estimativa de resgate" }}
-        </p>
-        <p class="text-4xl font-black text-bzd-orange">
-          R$ {{ investment.sellPrice | number : "1.2-2" }}
-        </p>
-      </div>
-
-      <div class="">
-        @if(!investment.isSold){
-        <button type="button" class="bzd-btn-primary" (click)="sell()">
-          Resgatar
-        </button>
-        }@else{
-        <p class="text-4xl font-black text-bzd-orange">Vendido</p>
-        }
-      </div>
-    </div>
+  <div class="flex-1">
+    <img src="/images/bzd-product-cover.png" class="h-full pt-20" />
   </div>
 </div>
 }
