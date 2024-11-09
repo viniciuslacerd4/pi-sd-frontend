@@ -23,4 +23,14 @@ export class AccountService extends HttpAppService {
   public create(account: AccountRequest): Observable<AccountResponse> {
     return this.httpClient.post<AccountResponse>(this.getEndpoint(), account);
   }
+
+  public update(
+    accountId: number,
+    account: AccountRequest
+  ): Observable<AccountResponse> {
+    return this.httpClient.put<AccountResponse>(
+      `${this.getEndpoint()}/${accountId}`,
+      account
+    );
+  }
 }
