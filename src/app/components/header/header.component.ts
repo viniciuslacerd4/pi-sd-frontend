@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { BalanceService } from '../../services/balance.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe],
+  imports: [RouterLink, DecimalPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

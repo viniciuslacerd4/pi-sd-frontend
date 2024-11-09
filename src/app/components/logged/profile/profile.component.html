@@ -1,66 +1,79 @@
-<div class="grid justify-items-center items-center h-full">
+<section class="px-24">
+  <h1 class="text-4xl font-black text-bzd-orange">Perfil</h1>
+  <div class="h-0.5 bg-bzd-orange w-full mb-6"></div>
+
   <form
     [formGroup]="formgroup"
     (ngSubmit)="onFormSubmit()"
-    class="space-y-4 border-solid border-bzd-orange border-2 rounded-2xl p-3 w-96 h-fit"
+    class="space-y-4 border-solid border-bzd-orange border-2 rounded-2xl p-3 h-fit"
   >
-    <div>
-      <label class="bzd-form-label" for="name">Nome</label>
-      <input
-        placeholder="Digite seu nome completo"
-        class="bzd-form-input"
-        type="text"
-        name="name"
-        formControlName="name"
-      />
-      @if (nameInvalid) {
-      <p class="text-red-500">O nome precisa ter pelo menos 3 letras.</p>
-      }
-    </div>
+    <div class="flex columns-2 gap-5">
+      <div class="flex-1">
+        <label class="bzd-form-label" for="name">Nome</label>
+        <input
+          placeholder="Digite seu nome completo"
+          class="bzd-form-input"
+          type="text"
+          name="name"
+          formControlName="name"
+        />
+        @if (nameInvalid) {
+        <p class="text-red-500">O nome precisa ter pelo menos 3 letras.</p>
+        }
+      </div>
 
-    <div>
-      <label class="bzd-form-label" for="document">CPF</label>
-      <input
-        placeholder="Digite seu CPF"
-        class="bzd-form-input"
-        type="text"
-        name="document"
-        formControlName="document"
-      />
-      @if (documentInvalid) {
-      <p class="text-red-500">Não foi possível identificar o CPF;</p>
-      <p class="text-red-500">Somente números.</p>
-      }
+      <div class="flex-1">
+        <label class="bzd-form-label" for="document">CPF</label>
+        <input
+          placeholder="Digite seu CPF"
+          class="bzd-form-input"
+          type="text"
+          name="document"
+          formControlName="document"
+        />
+        @if (documentInvalid) {
+        <p class="text-red-500">Não foi possível identificar o CPF;</p>
+        <p class="text-red-500">Somente números.</p>
+        }
+      </div>
     </div>
+    <div class="flex columns-2 gap-5">
+      <div class="flex-1">
+        <label class="bzd-form-label" for="telephone">Telefone</label>
+        <input
+          placeholder="Digite seu número"
+          class="bzd-form-input"
+          type="telephone"
+          name="telephone"
+          formControlName="telephone"
+        />
+        @if (telephoneInvalid) {
+        <p class="text-red-500">Telefone inválido.</p>
+        }
+      </div>
 
-    <div>
-      <label class="bzd-form-label" for="telephone">Telefone</label>
-      <input
-        placeholder="Digite seu número"
-        class="bzd-form-input"
-        type="telephone"
-        name="telephone"
-        formControlName="telephone"
-      />
-      @if (telephoneInvalid) {
-      <p class="text-red-500">Telefone inválido.</p>
-      }
+      <div class="flex-1">
+        <label class="bzd-form-label" for="dateOfBirth">
+          Data de nascimento
+        </label>
+        <input
+          placeholder="Digite seu número"
+          class="bzd-form-input"
+          type="date"
+          name="dateOfBirth"
+          formControlName="dateOfBirth"
+        />
+        @if (dateInvalid) {
+        <p class="text-red-500">Insira uma data válida</p>
+        }
+      </div>
     </div>
-
-    <div>
-      <label class="bzd-form-label" for="dateOfBirth">Data de nascimento</label>
-      <input
-        placeholder="Digite seu número"
-        class="bzd-form-input"
-        type="date"
-        name="dateOfBirth"
-        formControlName="dateOfBirth"
-      />
-      @if (dateInvalid) {
-      <p class="text-red-500">Insira uma data válida</p>
-      }
-    </div>
-
-    <button type="submit" class="bzd-btn-primary">Atualizar perfil</button>
+    <button
+      type="submit"
+      class="bzd-btn-primary"
+      [disabled]="formgroup.invalid"
+    >
+      Atualizar perfil
+    </button>
   </form>
-</div>
+</section>

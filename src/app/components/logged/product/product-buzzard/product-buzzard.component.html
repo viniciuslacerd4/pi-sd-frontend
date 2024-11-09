@@ -1,9 +1,16 @@
+@if(product == null){
+<div class="flex flex-col justify-center align-middle text-cor-0">
+  <p>Carregando</p>
+</div>
+} @else{
 <section class="bg-bzd-orange flex justify-between pt-8">
-  <div class="w-1/2 pl-40">
-    <h1 class="text-5xl text-white py-3">O que é urubu do pix</h1>
-    <p class="text-xl text-white py-2">
-      <span class="text-black font-semibold">{{ product.name }}</span> é um
-      investimento de alto rendimento diário de
+  <div class="w-1/2 text-white pl-40">
+    <h1 class="text-5xl py-3">
+      O que é
+      <span class="text-nowrap font-semibold">{{ product.name }}</span>
+    </h1>
+    <p class="text-xl py-2">
+      É um investimento de alto rendimento diário de
       <span class="text-black font-semibold">
         {{ product.dailyYield * 100 }}%
       </span>
@@ -25,29 +32,39 @@
   </div>
 </section>
 
-<section class="flex flex-col items-center text-white">
+<section class="flex flex-col items-center text-white pb-5">
   <h1 class="text-5xl font-bold text-black py-6">Vamos começar a investir!</h1>
   <h1 class="text-3xl font-bold text-black py-2">
     Quanto você deseja investir?
   </h1>
   <form class="" [formGroup]="formgroup" (ngSubmit)="onFormSubmit()">
-    <div class="w-full flex items-center text-black pt-5">
-      <label for="" class="text-2xl font-bold">R$</label>
-      <input
-        class="text-2xl text-bzd-orange w-full focus:outline-bzd-orange font-bold py-2 rounded-lg"
-        type="number"
-        name="amount"
-        formControlName="amount"
-      />
+    <div class="w-full grid items-center text-black pt-5">
+      <div class="flex items-center gap-2">
+        <label for="" class="text-2xl font-bold">R$</label>
+        <input
+          class="bzd-form-input text-2xl text-bzd-orange font-bold"
+          type="number"
+          name="amount"
+          formControlName="amount"
+        />
+      </div>
+      @if(amountInvalid){
+      <p class="text-red-600 flex">
+        Digite um número válido, com até duas casas decimais e o valor deve ser
+        maior que 0,10.
+      </p>
+      }
     </div>
 
     <div class="flex justify-center pt-10">
       <button
         type="submit"
-        class="text-white text-2xl font-semibold bg-bzd-orange rounded-lg w-3/4 h-full py-1"
+        class="bzd-btn-primary"
+        [disabled]="insufficientBalance || amountInvalid"
       >
         Confirmar
       </button>
     </div>
   </form>
 </section>
+}
