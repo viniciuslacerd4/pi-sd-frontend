@@ -1,5 +1,4 @@
-<br>
-<div class="flex h-full gap-5 text-gray-700 font-poppins ">
+<div class="flex h-full gap-5 text-gray-700 font-poppins pt-4">
   <!-- Coluna Esquerda -->
   <div class="w-1/2">
     <!-- Formulário de Valor -->
@@ -27,7 +26,7 @@
 
     <!-- Escolha de Transferência -->
     <div
-      [@ngIf]="!transferType && !!balance"
+      [@If]="!transferType && !!balance"
       class="w-full flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit mt-5"
     >
       <h1 class="text-2xl font-bold mb-4 text-gray-700">Escolha a forma de transferência</h1>
@@ -51,7 +50,7 @@
 
     <!-- Formulário Agência e Conta -->
     <form
-      [@ngIf]="transferType == 'agency'"
+      [@If]="transferType == 'agency'"
       class="w-full flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit mt-5"
       [formGroup]="agencyFormgroup"
       (ngSubmit)="onAgencyFormSubmit()"
@@ -108,7 +107,7 @@
   <div class="w-1/2 flex flex-col gap-5">
     <!-- Formulário Pix -->
     <form
-      [@ngIf]="transferType == 'pix'"
+      [@If]="transferType == 'pix'"
       class="flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit"
       [formGroup]="pixFormgroup"
       (ngSubmit)="onPixFormSubmit()"
@@ -143,13 +142,13 @@
       class="flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit"
     >
       <h1 class="text-2xl font-bold mb-4">Resumo da transferência</h1>
-      <div [@ngIf]="balance" class="w-full flex flex-col mb-4 font-bold">
+      <div [@If]="balance" class="w-full flex flex-col mb-4 font-bold">
         <p>Valor</p>
         <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
         <p class="text-2xl font-bold">R$ {{ balance | number : '1.2-2' }}</p>
       </div>
 
-      <div [@ngIf]="transferType" class="w-full flex flex-col mb-4 font-bold">
+      <div [@If]="transferType" class="w-full flex flex-col mb-4 font-bold">
         <p>Forma de transferência</p>
         <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
         <p class="text-2xl font-bold">
@@ -157,16 +156,16 @@
         </p>
       </div>
 
-      <div [@ngIf]="isTransferMethodSet" class="w-full flex flex-col mb-4 font-bold">
+      <div [@If]="isTransferMethodSet" class="w-full flex flex-col mb-4 font-bold">
         <p>Destino</p>
         <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
 
-        <div [@ngIf]="transferType == 'agency'">
+        <div [@If]="transferType == 'agency'">
           <p>Agência: <span class="text-lg font-bold">{{ agencyFormgroup.get('agency').value }}</span></p>
           <p>Conta: <span class="text-lg font-bold">{{ agencyFormgroup.get('account').value }}</span></p>
           <p>Banco: <span class="text-lg font-bold">{{ agencyFormgroup.get('bank').value }}</span></p>
         </div>
-        <div [@ngIf]="transferType == 'pix'">
+        <div [@If]="transferType == 'pix'">
           <p>Chave Pix: <span class="text-lg font-bold">{{ pixFormgroup.get('pix').value }}</span></p>
         </div>
       </div>
