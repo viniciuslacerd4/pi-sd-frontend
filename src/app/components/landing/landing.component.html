@@ -7,7 +7,7 @@
 
     <a
       class="bzd-btn-primary w-52 border hover:border-gray-200 hover:text-gray-200"
-      [routerLink]="['/auth', 'register']"
+      [routerLink]="isLoggedIn ? ['/investments'] : ['/auth', 'register']"
     >
       QUERO SER RICO!
     </a>
