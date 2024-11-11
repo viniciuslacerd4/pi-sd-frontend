@@ -1,15 +1,17 @@
 <div class="flex h-full gap-5 text-gray-700 font-poppins pt-4">
-  <!-- Coluna Esquerda -->
   <div class="w-1/2">
-    <!-- Formulário de Valor -->
     <form
       class="flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit"
       [formGroup]="balanceFormgroup"
       (ngSubmit)="onBalanceFormSubmit()"
     >
-      <h1 class="text-2xl font-bold mb-4 text-gray-700">Escolha o valor a ser transferido</h1>
+      <h1 class="text-2xl font-bold mb-4 text-gray-700">
+        Escolha o valor a ser transferido
+      </h1>
       <div class="w-full flex flex-col mb-3">
-        <label class="buzzard-form-label text-gray-700 font-bold" for="value">Valor</label>
+        <label class="buzzard-form-label text-gray-700 font-bold" for="value">
+          Valor
+        </label>
         <input
           placeholder="Valor a ser transferido"
           class="buzzard-form-input"
@@ -24,12 +26,13 @@
       </button>
     </form>
 
-    <!-- Escolha de Transferência -->
+    @if (!transferType && !!balance) {
     <div
-      [@If]="!transferType && !!balance"
       class="w-full flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit mt-5"
     >
-      <h1 class="text-2xl font-bold mb-4 text-gray-700">Escolha a forma de transferência</h1>
+      <h1 class="text-2xl font-bold mb-4 text-gray-700">
+        Escolha a forma de transferência
+      </h1>
       <div class="w-full flex gap-5">
         <button
           type="button"
@@ -47,10 +50,8 @@
         </button>
       </div>
     </div>
-
-    <!-- Formulário Agência e Conta -->
+    } @else if (transferType == 'agency') {
     <form
-      [@If]="transferType == 'agency'"
       class="w-full flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit mt-5"
       [formGroup]="agencyFormgroup"
       (ngSubmit)="onAgencyFormSubmit()"
@@ -58,7 +59,9 @@
       <h1 class="text-2xl font-bold mb-4">Transferir com Agência e Conta</h1>
 
       <div class="w-full flex flex-col mb-3">
-        <label class="buzzard-form-label text-gray-700 font-bold" for="agency">Agência</label>
+        <label class="buzzard-form-label text-gray-700 font-bold" for="agency">
+          Agência
+        </label>
         <input
           placeholder="Digite a sua agência"
           class="buzzard-form-input"
@@ -69,7 +72,9 @@
       </div>
 
       <div class="w-full flex flex-col mb-3">
-        <label class="buzzard-form-label text-gray-700 font-bold" for="account">Conta</label>
+        <label class="buzzard-form-label text-gray-700 font-bold" for="account">
+          Conta
+        </label>
         <input
           placeholder="Digite sua conta sem dígito"
           class="buzzard-form-input"
@@ -80,7 +85,9 @@
       </div>
 
       <div class="w-full flex flex-col mb-3">
-        <label class="buzzard-form-label text-gray-700 font-bold" for="bank">Banco</label>
+        <label class="buzzard-form-label text-gray-700 font-bold" for="bank">
+          Banco
+        </label>
         <input
           placeholder="Digite o nome do banco"
           class="buzzard-form-input"
@@ -98,16 +105,13 @@
         >
           Mudar para Pix
         </button>
-        <button type="submit" class="buzzard-btn w-1/2 font-bold">Continuar com conta</button>
+        <button type="submit" class="buzzard-btn w-1/2 font-bold">
+          Continuar com conta
+        </button>
       </div>
     </form>
-  </div>
-
-  <!-- Coluna Direita -->
-  <div class="w-1/2 flex flex-col gap-5">
-    <!-- Formulário Pix -->
+    }@else if (transferType == 'pix') {
     <form
-      [@If]="transferType == 'pix'"
       class="flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit"
       [formGroup]="pixFormgroup"
       (ngSubmit)="onPixFormSubmit()"
@@ -115,7 +119,9 @@
       <h1 class="text-2xl font-bold mb-4">Transferir com Pix</h1>
 
       <div class="w-full flex flex-col mb-3">
-        <label class="buzzard-form-label text-gray-700 font-bold" for="pix">Chave pix</label>
+        <label class="buzzard-form-label text-gray-700 font-bold" for="pix"
+          >Chave pix</label
+        >
         <input
           placeholder="e-mail, cpf, telefone ou chave aleatória"
           class="buzzard-form-input"
@@ -133,52 +139,75 @@
         >
           Mudar para Agência e Conta
         </button>
-        <button type="submit" class="buzzard-btn w-1/2 font-bold">Continuar com Pix</button>
+        <button type="submit" class="buzzard-btn w-1/2 font-bold">
+          Continuar com Pix
+        </button>
       </div>
     </form>
+    }
+  </div>
 
-    <!-- Resumo da Transferência -->
-    <div
-      class="flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit"
-    >
-      <h1 class="text-2xl font-bold mb-4">Resumo da transferência</h1>
-      <div [@If]="balance" class="w-full flex flex-col mb-4 font-bold">
-        <p>Valor</p>
-        <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
-        <p class="text-2xl font-bold">R$ {{ balance | number : '1.2-2' }}</p>
-      </div>
-
-      <div [@If]="transferType" class="w-full flex flex-col mb-4 font-bold">
-        <p>Forma de transferência</p>
-        <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
-        <p class="text-2xl font-bold">
-          {{ transferType == 'agency' ? 'Agência e Conta' : 'Pix' }}
-        </p>
-      </div>
-
-      <div [@If]="isTransferMethodSet" class="w-full flex flex-col mb-4 font-bold">
-        <p>Destino</p>
-        <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
-
-        <div [@If]="transferType == 'agency'">
-          <p>Agência: <span class="text-lg font-bold">{{ agencyFormgroup.get('agency').value }}</span></p>
-          <p>Conta: <span class="text-lg font-bold">{{ agencyFormgroup.get('account').value }}</span></p>
-          <p>Banco: <span class="text-lg font-bold">{{ agencyFormgroup.get('bank').value }}</span></p>
-        </div>
-        <div [@If]="transferType == 'pix'">
-          <p>Chave Pix: <span class="text-lg font-bold">{{ pixFormgroup.get('pix').value }}</span></p>
-        </div>
-      </div>
-
-      <button
-        type="button"
-        class="buzzard-btn mt-3 font-bold"
-        [disabled]="!isTransferMethodSet"
-        (click)="submitOperation()"
-      >
-        Transferir
-      </button>
+  <div
+    class="flex flex-col items-center border-2 border-bzd-orange rounded-2xl p-4 h-fit"
+  >
+    <h1 class="text-2xl font-bold mb-4">Resumo da transferência</h1>
+    @if(!!balance){
+    <div class="w-full flex flex-col mb-4 font-bold">
+      <p>Valor</p>
+      <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
+      <p class="text-2xl font-bold">R$ {{ balance | number : "1.2-2" }}</p>
     </div>
+
+    } @if(!!transferType){
+    <div class="w-full flex flex-col mb-4 font-bold">
+      <p>Forma de transferência</p>
+      <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
+      <p class="text-2xl font-bold">
+        {{ transferType == "agency" ? "Agência e Conta" : "Pix" }}
+      </p>
+    </div>
+    } @if(isTransferMethodSet){
+    <div class="w-full flex flex-col mb-4 font-bold">
+      <p>Destino</p>
+      <div class="h-0.5 bg-bzd-orange w-full mb-2"></div>
+
+      @if(transferType == 'agency'){
+      <p class="">
+        Agência:
+        <span class="text-lg font-bold">
+          {{ agencyFormgroup.get("agency").value }}
+        </span>
+      </p>
+      <p class="">
+        Conta:
+        <span class="text-lg font-bold">
+          {{ agencyFormgroup.get("account").value }}
+        </span>
+      </p>
+      <p class="">
+        Banco:
+        <span class="text-lg font-bold">
+          {{ agencyFormgroup.get("bank").value }}
+        </span>
+      </p>
+      }@else {
+      <p class="">
+        Chave Pix:
+        <span class="text-lg font-bold">
+          {{ pixFormgroup.get("pix").value }}
+        </span>
+      </p>
+      }
+    </div>
+    }
+
+    <button
+      type="button"
+      class="buzzard-btn mt-3 font-bold"
+      [disabled]="!isTransferMethodSet"
+      (click)="submitOperation()"
+    >
+      Transferir
+    </button>
   </div>
 </div>
-<br>
