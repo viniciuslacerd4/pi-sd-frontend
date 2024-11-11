@@ -64,4 +64,17 @@
       </div>
     </div>
   </div>
+
 </div>
+@if(selectedTransaction){
+<div
+  class="p-2 w-72 h-96 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-400"
+>
+  <button type="button" class="bzd-btn-primary" (click)="onCloseTransaction()">
+    Fechar
+  </button>
+  <app-transfer-detail
+    [transaction]="selectedTransaction"
+  ></app-transfer-detail>
+</div>
+}

@@ -1,49 +1,96 @@
-<div class="bg-bzd-orange h-24 flex justify-between align-bottom">
-  <a class="py-2 px-10" [routerLink]="['/']">
-    <img class="max-h-full" src="/images/bzd-main-logo.png" alt="Logo" />
-  </a>
+<header
+  class="bg-bzd-orange border-b border-bzd-orange-dark px-24 fixed top-0 left-0 right-0 z-10"
+>
+  <nav class="flex px-4 py-2 flex-nowrap justify-between">
+    <div>
+      <ul class="flex items-center gap-4">
+        <li>
+          <img
+            class="w-20 h-20 max-w-full"
+            src="/images/bzd-main-logo.png"
+            alt="Logo"
+          />
+        </li>
 
-  <div class="flex items-center gap-7 bg-bzd-orange-dark px-10">
-    @if (balance !== null) {
-    <a
-      [routerLink]="['/investments']"
-      class="flex flex-col items-center justify-center text-gray-200"
-    >
-      <p class="text-l">Investido</p>
-      <p class="text-2xl font-bold">----------</p>
-    </a>
+        @if (user != null) {
+        <li>
+          <a
+            class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
+            [routerLink]="['/']"
+          >
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
+            [routerLink]="['/investments']"
+          >
+            Investimentos
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
+            [routerLink]="['/balance', 'transfers']"
+          >
+            Transações
+          </a>
+        </li>
+        <li>
+          <a
+            class="text-white font-poppins text-2-m hover:text-gray-200 hover:underline"
+            [routerLink]="['/profile']"
+          >
+            Meu perfil
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
 
-    <a
-      [routerLink]="['/transfers']"
-      class="flex flex-col items-center justify-center pr-3 text-gray-200"
-    >
-      <p class="text-l">Saldo</p>
-      <p class="text-2xl font-bold">
-        {{ balance | currency : "BRL" }}
-      </p>
-    </a>
-    }@else {
-    <strong class="flex flex-col items-center justify-center text-gray-200">
-      <p class="text-l">Finalize sua conta para investir</p>
-    </strong>
-    }
-
-    <div class="flex flex-col justify-end">
+    <div class="flex items-center justify-items-center gap-4">
       @if (user != null) {
-      <a [routerLink]="['/profile']" class="buzzard-btn">
-        Editar <i class="fa-solid fa-pen-to-square pl-3"></i>
-      </a>
+      <div
+        class="flex gap-2 items-center justify-items-center text-center text-white"
+      >
+        <a
+          [routerLink]="['/balance', 'transfers']"
+          class="min-w-56 border border-white rounded-lg p-1 hover:border-bzd-orange-dark hover:text-bzd-orange-dark"
+        >
+          <h2 class="text-lg">Saldo</h2>
+          @if(balance) {
+          <p class="text-2xl font-bold">R$ {{ balance | number : "1.2-2" }}</p>
+          } @else {
+          <p class="text-2xl font-bold">----------</p>
+          }
+        </a>
+      </div>
 
-      <button (click)="onLogout()" class="buzzard-btn">
-        Sair <i class="fa-solid fa-arrow-right-from-bracket pl-3"></i>
-      </button>
-      }@else {
-      <a [routerLink]="['/auth', 'login']" class="buzzard-btn">Entrar</a>
-
-      <a [routerLink]="['/auth', 'register']" class="buzzard-btn">
-        Criar conta
-      </a>
+      <div class="grid gap-1">
+        <button
+          (click)="onLogout()"
+          class="bzd-btn-secondary text-white border-white items-center px-2"
+        >
+          Sair <i class="fa-solid fa-arrow-right-from-bracket pl-3"></i>
+        </button>
+      </div>
+      } @else {
+      <div class="flex items-center gap-4">
+        <a
+          [routerLink]="['/auth', 'register']"
+          class="bzd-btn-secondary text-white border-white items-center px-2"
+        >
+          Criar conta
+        </a>
+        <a
+          [routerLink]="['/auth', 'login']"
+          class="bzd-btn-secondary text-white border-white items-center px-2"
+        >
+          Entrar
+        </a>
+      </div>
       }
     </div>
-  </div>
-</div>
+  </nav>
+</header>

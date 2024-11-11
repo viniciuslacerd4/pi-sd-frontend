@@ -9,6 +9,9 @@ export class ToastService {
   newToast$: Subject<Toast> = new Subject<Toast>();
 
   addToast(toast: Toast) {
+    if (toast.timeout === undefined) {
+      toast.timeout = 5000;
+    }
     this.newToast$.next(toast);
   }
 }
