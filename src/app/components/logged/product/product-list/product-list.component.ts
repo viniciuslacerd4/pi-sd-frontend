@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProductService } from '../../../../services/product.service';
-import { ProductResponse } from '../../../../models/product-response.model';
-import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { PercentPipe } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { Pageable } from '../../../../models/pageable.model';
+import { ProductResponse } from '../../../../models/product-response.model';
+import { ProductService } from '../../../../services/product.service';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink, PercentPipe],
+  imports: [RouterLink],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
 })
