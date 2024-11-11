@@ -5,28 +5,31 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { BalanceService } from '../../../../services/balance.service';
 import { Router } from '@angular/router';
-import { DecimalPipe } from '@angular/common';
+import { BalanceService } from '../../../../services/balance.service';
+import { ToastService } from '../../../../services/toast.service';
 import { TransactionService } from '../../../../services/transaction.service';
 
 @Component({
   selector: 'app-balance-deposit',
   standalone: true,
-  imports: [ReactiveFormsModule, DecimalPipe],
+  imports: [ReactiveFormsModule],
   templateUrl: './balance-deposit.component.html',
   styleUrl: './balance-deposit.component.css',
 })
 export class BalanceDepositComponent implements OnInit {
   balanceFormgroup: FormGroup;
-
-  balance: number;
   depositType: string;
+
+  get validDeposit() {
+    return this.balanceFormgroup.valid && this.depositType;
+  }
 
   constructor(
     private balanceService: BalanceService,
     private transactionService: TransactionService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -39,28 +42,32 @@ export class BalanceDepositComponent implements OnInit {
     this.depositType = type;
   }
 
-  onBalanceFormSubmit() {
-    if (!this.balanceFormgroup.valid) return;
-    this.balance = this.balanceFormgroup.get('value').value;
-  }
-
   onSubmitOperation() {
-    if (!this.depositType) return;
+    const balance = this.balanceFormgroup.get('value').value;
 
     this.transactionService
       .create({
         type: 'DEPOSIT',
-        value: this.balance,
+        value: balance,
         description: 'Depósito via ' + this.depositType,
       })
       .subscribe({
         next: (transactionResponse) => {
-          //this.balanceService.updateBalance(transactionResponse.value);
           this.balanceService.updateBalance();
           this.router.navigate(['/balance', 'transfers']);
+          this.toastService.addToast({
+            title: 'Sucesso',
+            message: 'Depósito realizado com sucesso',
+            type: 'success',
+          });
         },
         error: (error) => {
           console.log('Error ' + error);
+          this.toastService.addToast({
+            title: 'Erro',
+            message: 'Erro ao realizar depósito',
+            type: 'error',
+          });
         },
       });
   }
